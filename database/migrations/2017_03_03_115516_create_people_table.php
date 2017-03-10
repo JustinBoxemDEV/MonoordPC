@@ -21,13 +21,6 @@ class CreatePeopleTable extends Migration
             $table->boolean('is_verified');
             $table->timestamps();
         });
-        
-        Schema::table('people', function (Blueprint $table)
-        {
-            
-        $table->foreign('person_id')->references('person_id')->on('bandpeople');
-
-        });
     }
 
     /**

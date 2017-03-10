@@ -18,13 +18,6 @@ class CreateBandsTable extends Migration
             $table->string('name')->unique();
             $table->timestamps();
         });
-        
-        Schema::table('bands', function (Blueprint $table)
-        {
-            
-        $table->foreign('band_id')->references('band_id')->on('bandpeople');
-
-        });
     }
 
     /**

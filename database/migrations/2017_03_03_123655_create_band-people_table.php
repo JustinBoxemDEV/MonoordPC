@@ -15,10 +15,18 @@ class CreateBandPeopleTable extends Migration
     {
         Schema::create('bandpeople', function (Blueprint $table) {
             $table->increments('bp-bridge_id');
-            $table->integer('person_id');
-            $table->integer('band_id');
+            $table->integer('person_id')->unsigned();
+            $table->integer('band_id')->unsigned();
             $table->timestamps();
-        });     
+        });
+        
+        Schema::table('bandpeople', function (Blueprint $table)
+        {
+            
+        $table->foreign('person_id')->references('person_id')->on('people');
+        $table->foreign('band_id')->references('band_id')->on('bands');
+
+        });
     }
 
     /**
