@@ -19,14 +19,13 @@ class CreatePeopleTable extends Migration
             $table->string('surname');
             $table->string('password');
             $table->boolean('is_verified');
-            $table->integer('band_id')->unsigned();
             $table->timestamps();
         });
         
         Schema::table('people', function (Blueprint $table)
         {
             
-        $table->foreign('band_id')->references('band_id')->on('bandpeople');
+        $table->foreign('person_id')->references('person_id')->on('bandpeople');
 
         });
     }
