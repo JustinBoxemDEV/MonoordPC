@@ -11,7 +11,7 @@ class Person extends Model
         'person_id', 'initials', 'surname', 'band_id', 'password', 'is_verified'
     ];
      
-     public function band() {
-        return $this->belongsTo(BandPerson::class);
+     public function bandPerson() {
+        return $this->hasMany(BandPerson::class);
     }
 }
