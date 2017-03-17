@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\BandPerson;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,5 +13,8 @@ class Invoice extends Model
       
       public function btw() {
         return $this->hasMany(Btw::class);
+    }
+     public function band() {
+        return $this->belongsTo(band::class);
     }
 }
