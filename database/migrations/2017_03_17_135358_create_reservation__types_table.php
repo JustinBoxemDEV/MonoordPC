@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTimeslotsTable extends Migration
+class CreateReservationTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateTimeslotsTable extends Migration
      */
     public function up()
     {
-        Schema::create('timeslots', function (Blueprint $table) {
-            $table->increments('timeslot_id');
-            $table->string('timeslot_name');
-            $table->time('begintime');
-            $table->time('endtime');
+        Schema::create('reservation__types', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateTimeslotsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('timeslots');
+        Schema::dropIfExists('reservation__types');
     }
 }
