@@ -15,7 +15,7 @@ class CreateBtwTable extends Migration
     {
         Schema::create('btw', function (Blueprint $table) {
             $table->increments('btw_id');
-            $table->int('percentage');
+            $table->integer('percentage');
             $table->timestamps();
         });
         
