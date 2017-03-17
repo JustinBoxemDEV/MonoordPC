@@ -12,5 +12,5 @@ class InvoiceLine extends Model
       
       public function invoiceLine() {
         return $this->belongsTo(Invoice::class);
-    } //
+    }
 }
