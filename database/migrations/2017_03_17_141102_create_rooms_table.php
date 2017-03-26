@@ -14,8 +14,17 @@ class CreateRoomsTable extends Migration
     public function up()
     {
         Schema::create('rooms', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('room_id');
+            $table->integer('room_type_id')->unsigned();
+            $table->string('room_name');
+            $table->boolean('eligble_for_reservation');
             $table->timestamps();
+        });
+        
+        Schema::table('rooms', function (Blueprint $table)
+        {
+            
+        $table->foreign('room_type_id')->references('room_type_id')->on('room_types');
         });
     }
 
