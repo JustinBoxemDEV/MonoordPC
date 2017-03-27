@@ -17,8 +17,10 @@ class CreatePeopleTable extends Migration
             $table->increments('person_id');
             $table->string('initials');
             $table->string('surname');
+            $table->string('email');
             $table->string('password');
-            $table->boolean('is_verified');
+            //$table->integer('band_id')->null();
+            $table->boolean('is_verified')->default(0);
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Person;
+//use App\BandPerson;
 
 class PersonController extends Controller
 {
@@ -15,7 +16,7 @@ class PersonController extends Controller
     public function index()
     {
         $persons = Person::all();
-        return view('persons.index', compact('persons'));
+        return view('personen.index', compact('persons'));
     }
 
     /**
@@ -25,7 +26,9 @@ class PersonController extends Controller
      */
     public function create()
     {
-        return view('persons.create');
+        //V - Doen we later, ff eerst kijken of we een persoon kunnen aanmaken
+        //$bands = BandPerson::lists('band_id', 'band_id');
+        return view('personen.create');
     }
 
     /**
@@ -36,7 +39,11 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $person = new Person;
+        $person->fill($request->all());
+        $person->save();
+
+        return redirect('/personen')->with('success');
     }
 
     /**
@@ -47,7 +54,8 @@ class PersonController extends Controller
      */
     public function show($id)
     {
-        //
+        $person = Person::all()->find($id);
+        return view('personen.show', compact('person'));
     }
 
     /**
@@ -58,7 +66,8 @@ class PersonController extends Controller
      */
     public function edit($id)
     {
-        //
+        $person = Person::all()->find($id);
+        return view('personen.edit', compact('person'));
     }
 
     /**
@@ -70,7 +79,9 @@ class PersonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $person = Person::all()->find($id);
+        $person->update($request->all());
+        return redirect('/personen/' . $id)->with('succes');
     }
 
     /**
@@ -81,6 +92,8 @@ class PersonController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $person = Person::all()->find($id);
+        $person->delete();
+        return redirect('/personen/')->with('succes');
     }
 }

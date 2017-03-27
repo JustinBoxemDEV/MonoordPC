@@ -14,10 +14,18 @@ class PeopleTableSeeder extends Seeder
         DB::table('people')->insert(
         [
         [
-        'name' => 'Jordy'
+        'initials' => 'J',
+        'surname' => 'Boxem',
+        'password' => 'test',
+        'band_id' => '1',
+        'is_verified' => 'true'
         ],
         [
-        'name' => 'Dave'
+        'initials' => 'B',
+        'surname' => 'Bierhof',
+        'password' => 'test',
+        'band_id' => '2',
+        'is_verified' => 'false'
         ],
         ]);
     }
