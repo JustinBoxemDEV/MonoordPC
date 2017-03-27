@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Person;
 
-class PersonController extends Controller
+class InvoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class PersonController extends Controller
      */
     public function index()
     {
-        $persons = Person::all();
-        return view('persons.index', compact('persons'));
+        //
     }
 
     /**
@@ -25,7 +23,7 @@ class PersonController extends Controller
      */
     public function create()
     {
-        return view('persons.create');
+        //
     }
 
     /**

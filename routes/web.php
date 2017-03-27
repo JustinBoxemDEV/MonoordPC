@@ -19,4 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::resource('/person', 'PersonController');
+Route::resource('/persoon', 'PersonController');
+
+Route::resource('/band', 'BandController');
+
+Route::resource('/factuur', 'InvoiceController');
+
+Route::resource('/reservering', 'OrderController');
