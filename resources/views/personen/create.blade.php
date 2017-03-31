@@ -3,8 +3,8 @@
 @section('content')
 
 
-{{ Form::open(array('route' => 'person.store')) }}
-@include('persons.form')
+{{ Form::open(array('route' => 'personen.store')) }}
+@include('personen.form')
 
 {{ Form::close() }}
 
