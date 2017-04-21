@@ -8,10 +8,10 @@ use App\Room_Type;
 class Room extends Model
 {
     protected $fillable = [
-        'room_id', 'room_type_id', 'room_name', 'eligble_for_reservation'
+        'id', 'room_type_id', 'room_name', 'rent_status',
     ];
-    
-    public function Room_Type() {
+     
+    public function Room_Types() {
         return $this->hasMany(Room_Type::class);
     }
 }

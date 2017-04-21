@@ -3,14 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-/*
- * 
- */
 
-class City extends Model {
-
+class Payment_Method extends Model
+{
     protected $fillable = [
-        'city_id', 'name'
+        'id', 'payment_method_name', 'ticketstrip_value',
     ];
-    
 }

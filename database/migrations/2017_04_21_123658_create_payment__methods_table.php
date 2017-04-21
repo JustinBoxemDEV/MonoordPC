@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInvoiceLinesTable extends Migration
+class CreatePaymentMethodsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateInvoiceLinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('invoice_lines', function (Blueprint $table) {
-            $table->increments('line_id');
-            $table->string('description');
+        Schema::create('payment__methods', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('payment_method_name', 50);
+            $table->integer('ticketstrip_value');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateInvoiceLinesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invoice_lines');
+        Schema::dropIfExists('payment__methods');
     }
 }

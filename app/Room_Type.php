@@ -8,10 +8,10 @@ use App\Room;
 class Room_Type extends Model
 {
     protected $fillable = [
-        'room_type_id', 'room_type', 'surface_area'
+        'id', 'room_type_name', 'room_type_surface',
     ];
-    
-    public function Room() {
-        return $this->belongsTo(Room::class);
+     
+    public function Rooms() {
+        return $this->hasMany(Room::class);
     }
 }

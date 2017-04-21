@@ -3,15 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\BandPerson;
+use App\Band_User_Bridge;
 
 class Band extends Model
 {
-      protected $fillable = [
-        'band_id', 'name', 'person_id'
+    protected $fillable = [
+        'id', 'band_name', 'band_credits',
     ];
-      
-      public function bandPerson() {
-        return $this->hasMany(BandPerson::class);
+     
+    public function Band_User_Bridge() {
+        return $this->hasMany(Band_User_Bridge::class);
     }
 }
