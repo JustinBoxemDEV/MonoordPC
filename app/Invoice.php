@@ -30,4 +30,8 @@ class Invoice extends Model
         return $this->belongsTo(Invoice_Heading::class, 'invoice_heading_id');
     }
     
+    public function Invoice_line() {
+        return $this->hasMany(Invoice_Line::class);
+    }
+    
 }
