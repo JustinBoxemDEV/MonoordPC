@@ -11,18 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
-
+Route::get('/', 'PagesController@index');
 Route::get('/home', 'HomeController@index');
 
-Route::resource('/personen', 'PersonController');
+Route::resource('/roster', 'RosterController');
 
-Route::resource('/bands', 'BandController');
-
-Route::resource('/facturen', 'InvoiceController');
-
-Route::resource('/reserveringen', 'OrderController');
+Auth::routes();

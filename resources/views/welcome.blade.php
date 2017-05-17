@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Monoord Admin Systeem
                 </div>
 
                 <div class="links">
