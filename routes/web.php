@@ -15,5 +15,8 @@ Route::get('/', 'PagesController@index');
 Route::get('/home', 'HomeController@index');
 
 Route::resource('/roster', 'RosterController');
+Route::resource('/archive', 'ArchiveController');
+Route::resource('/adminpanel', 'AdminPanelController');
+Route::resource('/invoice', 'InvoiceController');
 
 Auth::routes();
