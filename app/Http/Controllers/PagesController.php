@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 { 
@@ -17,7 +18,7 @@ class PagesController extends Controller
           return view('login'); 
         }
         else{
-          return view('welcome');  
+          return view('dashboard');  
         }
     }
 }
