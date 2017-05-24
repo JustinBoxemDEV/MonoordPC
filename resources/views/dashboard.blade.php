@@ -7,6 +7,7 @@
     <div class="page-header">
     <h1>Dashboard</h1>
     </div>
+    
     <div class="dashboard-links">
         <a href="/roster">Rooster</a>
         <a href="/invoice">Facturen</a>
