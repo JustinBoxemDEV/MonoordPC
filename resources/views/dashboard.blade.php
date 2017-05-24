@@ -9,6 +9,9 @@
     
     <div class="dashboard-links">
         <a href="/roster">Rooster</a>
+        <a href="/invoice">Facturen</a>
+        <a href="/archive">Archief</a>
+        <a href="/admin">Admin Panel</a>
     </div>
     
 </div>
