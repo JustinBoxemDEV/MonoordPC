@@ -8,7 +8,7 @@
                 <div class="panel-heading">Rooster</div>
 
                 <div class="panel-body">
-                    Welkom op rooster jij vuile codeur
+                    Welkom op het rooster.
                 </div>
             </div>
         </div>
