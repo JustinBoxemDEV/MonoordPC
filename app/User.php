@@ -23,9 +23,10 @@ class User extends Authenticatable
     public function User_Addresses() {
         return $this->hasMany(User_Address::class);
     }
-
-    public function Band_User_Bridge() {
-        return $this->hasMany(Band_User_Bridge::class);
+    
+    public function Bands()
+    {
+        return $this->belongsToMany(Band::class, 'band__user_bridge', 'band_id', 'user_id')->withTimestamps();
     }
 
     /**

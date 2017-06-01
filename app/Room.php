@@ -13,7 +13,7 @@ class Room extends Model
     ];
      
     public function Room_Types() {
-        return $this->hasMany(Room_Type::class);
+        return $this->hasMany(Room_Type::class, 'room_type_id', 'id');
     }
     
     public function Temporary_Reservation() {

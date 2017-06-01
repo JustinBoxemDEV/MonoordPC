@@ -18,6 +18,7 @@ class CreateRoomsTable extends Migration
             $table->integer('room_type_id')->unsigned();
             $table->string('room_name');
             $table->boolean('rent_status');
+            $table->integer('room_surface_area');
             $table->timestamps();
         });
         
