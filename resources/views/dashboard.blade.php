@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <h4>Aantal bands: VAR1 (lars u can style this to the left plox)</h4>
-    <h4>Aantal users: VAR2 (lars u can style this to the right plox)</h4>
+    <h4>Aantal bands: {{ $totalBands }} (lars u can style this to the left plox)</h4>
+    <h4>Aantal users: {{ $totalUsers }} (lars u can style this to the right plox)</h4>
     <div class="page-header">
     <h1>Dashboard</h1>
     </div>

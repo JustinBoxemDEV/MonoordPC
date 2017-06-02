@@ -2,23 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Band;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class PagesController extends Controller
-{ 
-     public function __construct()
-    {
+class PagesController extends Controller {
+
+    
+    //Defining middleware used for page access
+    public function __construct() {
         $this->middleware('auth');
     }
+
     
-    public function index()
-    {
-        if(Auth::guest()){
-          return view('login'); 
-        }
-        else{
-          return view('dashboard');  
+    //Redirects guests to the login page | If logged in, show dashboard page and give data with it.
+    public function index() {
+        if (Auth::guest()) {
+            return view('login');
+        } else {
+            $totalBands = Band::count();
+            $totalUsers = User::count();
+            return view('dashboard', compact('totalBands', 'totalUsers'));
         }
     }
 }
