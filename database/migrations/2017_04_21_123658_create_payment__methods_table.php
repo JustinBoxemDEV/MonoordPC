@@ -16,7 +16,7 @@ class CreatePaymentMethodsTable extends Migration
         Schema::create('payment__methods', function (Blueprint $table) {
             $table->increments('id');
             $table->string('payment_method_name', 50);
-            $table->integer('ticketstrip_value');
+            $table->integer('ticketstrip_value')->nullable();
             $table->timestamps();
         });
     }
