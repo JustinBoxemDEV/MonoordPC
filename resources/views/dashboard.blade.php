@@ -18,7 +18,7 @@
     
     <div clas="dashboard-overview">
         <h1>lars, deze div is een "zone" waarin alle reserveringen worden weergegeven
-            van deze dag. Feel free to style it wild.
+            van deze dag. Feel free to style it wild. {{ $totalReservations }}
         </h1>
     </div>
     

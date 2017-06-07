@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Band;
+use App\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +24,11 @@ class PagesController extends Controller {
         } else {
             $totalBands = Band::count();
             $totalUsers = User::count();
-            return view('dashboard', compact('totalBands', 'totalUsers'));
+            $totalReservations = Reservation::count();
+            if($totalReservations == 0){
+                $totalReservations = "Er zijn momenteel geen reserveringen";
+            }
+            return view('dashboard', compact('totalBands', 'totalUsers', 'totalReservations'));
         }
     }
 }
