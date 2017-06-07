@@ -17,6 +17,7 @@ class CreateBandUserBridgesTable extends Migration
             $table->increments('id');
             $table->integer('band_id')->unsigned();
             $table->integer('user_id')->unsigned();
+            $table->boolean('is_contactperson')->default(0);
             $table->timestamps();
         });
         

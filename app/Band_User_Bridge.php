@@ -9,7 +9,7 @@ use App\Band;
 class Band_User_Bridge extends Model
 {
     protected $fillable = [
-        'id', 'band_id', 'user_id',
+        'id', 'band_id', 'user_id','is_contactperson',
     ];
     
     public function Band() {
