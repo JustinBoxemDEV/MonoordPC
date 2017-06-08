@@ -6,3 +6,9 @@
     background-color:#47534e;
     color:#ef090c;
 }
+
+.dashboard-links > a {
+    padding: 0 50px;
+    letter-spacing: .1rem;
+    text-decoration: none;
+}
