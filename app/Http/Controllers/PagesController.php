@@ -24,11 +24,12 @@ class PagesController extends Controller {
         } else {
             $totalBands = Band::count();
             $totalUsers = User::count();
+            $currentDay = date("j F Y");
             $totalReservations = Reservation::count();
             if($totalReservations == 0){
                 $totalReservations = "Er zijn momenteel geen reserveringen";
             }
-            return view('dashboard', compact('totalBands', 'totalUsers', 'totalReservations'));
+            return view('dashboard', compact('totalBands', 'totalUsers', 'totalReservations', 'currentDay'));
         }
     }
 }
