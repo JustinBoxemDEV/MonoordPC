@@ -16,7 +16,7 @@ class CreateBandsTable extends Migration
         Schema::create('bands', function (Blueprint $table) {
             $table->increments('id');
             $table->string('band_name', 100);
-            $table->integer('band_credits');
+            $table->integer('band_credits')->default(0);
             $table->timestamps();
         });
     }

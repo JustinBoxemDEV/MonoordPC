@@ -11,7 +11,7 @@ use App\Invoice_Heading;
 class Invoice extends Model
 {
     protected $fillable = [
-        'id', 'price_id', 'vat_id', 'reservation_id', 'invoice_heading_id', 'invoice_number', 'invoice_date', 'invoice_date', 'invoice_weeknumber', 'invoice_description',
+        'id', 'price_id', 'vat_id', 'reservation_id', 'invoice_heading_id', 'invoice_number', 'invoice_date', 'invoice_date', 'invoice_weeknumber', 'invoice_description', 'paid',
     ];
     
     public function Price() {
