@@ -23,6 +23,7 @@ class CreateInvoicesTable extends Migration
             $table->date('invoice_date');
             $table->integer('invoice_weeknumber');
             $table->string('invoice_description');
+            $table->boolean('paid')->default(0);
             $table->timestamps();
         });
         

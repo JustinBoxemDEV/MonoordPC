@@ -23,6 +23,26 @@ class UsersTableSeeder extends Seeder
                         'is_verified' => '1',
                         'verification_code' => '5isanumber69',
                     ],
+                    [
+                        'name' => 'Admin',
+                        'email' => 'admin@lars.nl',
+                        'password' => '$2y$10$q/fkaKliLmSjW4Gqrh4Hx.pzPZMcztIL.r4yhD.5Lxdm8ca25YmBy',
+                        'firstname' => 'Tester',
+                        'lastname' => 'Test',
+                        'is_admin' => '1',
+                        'is_verified' => '1',
+                        'verification_code' => '5isanumber69',
+                    ],
+                    [
+                        'name' => 'Admin',
+                        'email' => 'admin@bas.nl',
+                        'password' => '$2y$10$q/fkaKliLmSjW4Gqrh4Hx.pzPZMcztIL.r4yhD.5Lxdm8ca25YmBy',
+                        'firstname' => 'Tester',
+                        'lastname' => 'Test',
+                        'is_admin' => '1',
+                        'is_verified' => '1',
+                        'verification_code' => '5isanumber69',
+                    ],
         ]);
     }
 }
