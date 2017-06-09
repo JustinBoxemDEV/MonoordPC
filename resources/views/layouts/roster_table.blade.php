@@ -94,7 +94,32 @@
             </nav>
 
             @yield('content')
-        
+            <div class='roster_table'>
+                
+                 <table class="table table-bordered">
+                
+                <tr>
+                <td> 08:00 </td>
+                <td> data </td>
+                <td> more data </td>
+            </tr>
+
+            <tr>
+                <td> 09:00 </td>
+                <td> data </td>
+                <td> more data </td>
+            </tr>
+
+            <tr>
+                <td> 10:00 </td>
+                <td> data </td>
+                <td> more data </td>
+            </tr>
+            </div>
+
+            </table>
+            
+        </div>
         
     </div>
 

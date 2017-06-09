@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.roster_table')
 
 @section('content')
 <div class="container">
@@ -18,13 +18,14 @@
     
     <h2>{{ $currentDay }}</h2>
     <br>
-    <br>
+    <br> 
     
-    <div clas="dashboard-overview">
-        <h1>lars, deze div is een "zone" waarin alle reserveringen worden weergegeven
-            van deze dag. Feel free to style it wild. {{ $totalReservations }}
-        </h1>
-    </div>
-    
-</div>
+        <div class="dashboard-overview">
+        
+        
+     
+        </div>
+
+
+
 @endsection
