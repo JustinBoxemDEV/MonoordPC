@@ -21,6 +21,14 @@ class BandsTableSeeder extends Seeder
                         'band_name' => 'Minstrel of Doom',
                         'band_credits' => 0,
                     ],
+                    [
+                        'band_name' => 'Slayer of Cookies',
+                        'band_credits' => 0,
+                    ],
+                    [
+                        'band_name' => 'Fiendish Defiance',
+                        'band_credits' => 95,
+                    ],
                     
         ]);
     }

@@ -26,5 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BandsTableSeeder::class);
         $this->call(TemporaryReservationsTableSeeder::class);
         $this->call(ReservationsTableSeeder::class);
+        $this->call(BandUserBridgeTableSeeder::class);
+        $this->call(PricesTableSeeder::class);
     }
 }
