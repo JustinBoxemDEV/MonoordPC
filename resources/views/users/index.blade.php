@@ -3,6 +3,7 @@
 
 <div class="container">
     <table class="display table table-bordered table-condensed table-responsive dynamic-table">
+        <b><h1><a href="{{ url('/users/create') }}">Voeg gebruiker toe</a></h1></b>
         <thead>
             <tr>
                 <th>Naam: </th>
