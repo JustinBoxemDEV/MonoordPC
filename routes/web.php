@@ -12,12 +12,11 @@
 */
 
 Route::get('/', 'PagesController@index');
-
+Auth::routes();
+        
 Route::resource('/roster', 'RosterController');
 Route::resource('/archive', 'ArchiveController');
 Route::resource('/adminpanel', 'AdminPanelController');
 Route::resource('/invoice', 'InvoiceController');
 Route::resource('/users', 'UsersController');
 Route::resource('/bands', 'BandsController');
-
-Auth::routes();
