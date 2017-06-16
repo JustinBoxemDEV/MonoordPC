@@ -16,6 +16,7 @@ class CreateRoomsTable extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('room_type_id')->unsigned();
+            $table->integer('room_price_id')->unsigned();
             $table->string('room_name');
             $table->boolean('rent_status')->default(0);
             $table->integer('room_surface_area');
@@ -25,6 +26,7 @@ class CreateRoomsTable extends Migration
         Schema::table('rooms', function (Blueprint $table)
         {
             $table->foreign('room_type_id')->references('id')->on('room_types');   
+            $table->foreign('room_price_id')->references('id')->on('room__prices'); 
         });
     }
 
