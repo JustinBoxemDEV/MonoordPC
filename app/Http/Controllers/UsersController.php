@@ -78,6 +78,15 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::all()->find($id);
+        $newPassword = $request->get('password');
+
+        if (empty($newPassword)) {
+            $user->update($request->except('password'));
+        } else {
+            $consolevar = bcrypt($request->get('password'));
+            dd($consolevar);
+            
+        }
         $user->update($request->all());
         return redirect('/users/' . $id)->with('succes');
     }
