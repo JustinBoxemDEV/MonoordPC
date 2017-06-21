@@ -76,7 +76,7 @@
             @yield('content')
             <div class='roster_table'>
                 
-                 <table class="table table-bordered">
+                <table class="table table-bordered">
                 
                 <tr>
                 <td> 08:00 </td>
@@ -97,7 +97,7 @@
             </tr>
             </div>
 
-            </table>
+                </table>
             
         </div>
         
