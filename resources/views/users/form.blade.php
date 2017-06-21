@@ -33,6 +33,8 @@
                 <div class="col-lg-6">{{ Form::checkbox('is_verified')}}</div>
             </div>
             {{ Form::submit('Opslaan') }}
+            <!-- Cancel Button -->
+                <a href="{{ url('/users') }}" class="btn btn-danger"  data-toggle="confirmation" role="button">Cancel</a>
         </div>
     </div>
 </div>

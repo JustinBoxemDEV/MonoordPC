@@ -3,6 +3,7 @@
 
 <div class="container">
     <table class="display table table-bordered table-condensed table-responsive dynamic-table">
+        <b><h1><a href="{{ url('/bands/create') }}">Voeg band toe</a></h1></b>
         <thead>
             <tr>
                 <th>Bandnummer: </th>
