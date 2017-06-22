@@ -15,6 +15,7 @@ class CreateRoomPricesTable extends Migration
     {
         Schema::create('room__prices', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('room_id')->unsigned();
             $table->integer('per_hour');
             $table->integer('per_two')->nullable();
             $table->integer('per_three')->nullable();
@@ -25,7 +26,14 @@ class CreateRoomPricesTable extends Migration
             $table->boolean('daypart');
             $table->timestamps();
         });
+        
+        Schema::table('room__prices', function (Blueprint $table)
+        {  
+            $table->foreign('room_id')->references('id')->on('rooms'); 
+        });
     }
+    
+    
 
     /**
      * Reverse the migrations.

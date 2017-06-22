@@ -14,6 +14,7 @@ class RoomPricesTableSeeder extends Seeder
         DB::table('room__prices')->insert(
                 [
                     [
+                        'room_id' => 1,
                         'per_hour' => 600,
                         'per_two' => NULL,
                         'per_three' => 1500,
@@ -24,6 +25,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 1,
                     ],
                     [
+                        'room_id' => 1,
                         'per_hour' => 650,
                         'per_two' => NULL,
                         'per_three' => 1600,
@@ -34,6 +36,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 1,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 700,
                         'per_two' => NULL,
                         'per_three' => 1700,
@@ -44,6 +47,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 1,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 750,
                         'per_two' => NULL,
                         'per_three' => 1800,
@@ -54,6 +58,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 1,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 800,
                         'per_two' => NULL,
                         'per_three' => 1900,
@@ -64,6 +69,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 1,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 900,
                         'per_two' => NULL,
                         'per_three' => 2500,
@@ -74,6 +80,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 1,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 950,
                         'per_two' => NULL,
                         'per_three' => 2600,
@@ -84,6 +91,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 1,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 1000,
                         'per_two' => NULL,
                         'per_three' => 2700,
@@ -94,6 +102,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 1,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 1050,
                         'per_two' => NULL,
                         'per_three' => 2800,
@@ -104,6 +113,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 1,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 1100,
                         'per_two' => NULL,
                         'per_three' => 2900,
@@ -114,6 +124,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 1,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 300,
                         'per_two' => NULL,
                         'per_three' => 700,
@@ -124,6 +135,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 1,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 600,
                         'per_two' => NULL,
                         'per_three' => 1400,
@@ -134,6 +146,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 1,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 1500,
                         'per_two' => NULL,
                         'per_three' => 4000,
@@ -144,6 +157,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 1,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 800,
                         'per_two' => NULL,
                         'per_three' => 2000,
@@ -154,6 +168,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 1,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 1200,
                         'per_two' => NULL,
                         'per_three' => 3000,
@@ -164,6 +179,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 1,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 1000,
                         'per_two' => NULL,
                         'per_three' => NULL,
@@ -174,6 +190,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 1,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 1050,
                         'per_two' => 1600,
                         'per_three' => 2400,
@@ -184,6 +201,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 0,
                     ],
                     [
+                        'room_id' => 1,
                         'per_hour' => 1060,
                         'per_two' => 1680,
                         'per_three' => 2525,
@@ -194,6 +212,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 0,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 1300,
                         'per_two' => 2180,
                         'per_three' => 3275,
@@ -204,6 +223,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 0,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 1450,
                         'per_two' => 2480,
                         'per_three' => 3725,
@@ -214,6 +234,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 0,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 1600,
                         'per_two' => 2650,
                         'per_three' => 3975,
@@ -224,6 +245,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 0,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 1280,
                         'per_two' => 2170,
                         'per_three' => 3250,
@@ -234,6 +256,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 0,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 1350,
                         'per_two' => 2230,
                         'per_three' => 3350,
@@ -244,6 +267,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 0,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 1400,
                         'per_two' => 2400,
                         'per_three' => 3600,
@@ -254,6 +278,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 0,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 1500,
                         'per_two' => 2530,
                         'per_three' => 3800,
@@ -264,6 +289,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 0,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 1580,
                         'per_two' => 2670,
                         'per_three' => 4000,
@@ -274,6 +300,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 0,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 420,
                         'per_two' => 2400,
                         'per_three' => 3600,
@@ -284,6 +311,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 0,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 750,
                         'per_two' => 1200,
                         'per_three' => 1800,
@@ -294,6 +322,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 0,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 2500,
                         'per_two' => 4800,
                         'per_three' => 7200,
@@ -304,6 +333,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 0,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 2500,
                         'per_two' => 5000,
                         'per_three' => 7500,
@@ -314,6 +344,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 0,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 1100,
                         'per_two' => 6320,
                         'per_three' => 9500,
@@ -324,6 +355,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 0,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 1500,
                         'per_two' => 1580,
                         'per_three' => 2375,
@@ -334,6 +366,7 @@ class RoomPricesTableSeeder extends Seeder
                         'daypart' => 0,
                     ],  
                     [
+                        'room_id' => 1,
                         'per_hour' => 1250,
                         'per_two' => NULL,
                         'per_three' => NULL,
