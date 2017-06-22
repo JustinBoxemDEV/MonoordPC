@@ -10,29 +10,38 @@
                 <div class="panel-body">
                     <div class="dashboard-overview">
 
-                        <table class="table table-bordered">
+                        <div class='roster_table'>
                 
-                <tr>
-                <td> 08:00 </td>
-                <td> data </td>
-                <td> more data </td>
-            </tr>
+                <table class="display table table-bordered table-condensed table-responsive dynamic-table">
+                    
+                    <thead>
+                        <tr>
+                            <th>Band: </th>
+                            <th>Zaal: </th>
+                            <th>Betaalmethode: </th>
+                            <th>Datum: </th>
+                            <th>Placeholder (delayed): </th>
+                        </tr>
+                    </thead>
 
-            <tr>
-                <td> 09:00 </td>
-                <td> data </td>
-                <td> more data </td>
-            </tr>
-
-            <tr>
-                <td> 10:00 </td>
-                <td> data </td>
-                <td> more data </td>
-            </tr>
-            </div>
+                    <tbody>
+                    <br>
+                    @foreach($temporary_reservations as $temporary_reservation)
+                    <tr class="clickable-row" data-url="/roster/{{ $temporary_reservation->id }}">
+                        <td>{{ $temporary_reservation->Band->band_name}}</td>
+                        <td>{{ $temporary_reservation->Room->room_name }}</td>
+                        <td>{{ $temporary_reservation->Payment_Method->payment_method_name }}</td>
+                        <td>{{ $temporary_reservation->temp_reservation_date }}</td>
+                        <td>{{ $temporary_reservation->temp_delayed }}</td>
+                         <td><a href="{{ url('/roster/' . $temporary_reservation->id . '/edit') }}"><button class="btn btn-warning"><span class="glyphicon glyphicon-pencil"> Bijwerken</span></button></a></td>
+                    </tr>
+                    @endforeach
+                    </tbody>
 
                 </table>
-
+            
+        </div>
+                        
                     </div>
                 </div>
             </div>
