@@ -11,16 +11,16 @@
                     <div class="dashboard-overview">
 
                         <div class='roster_table'>
-                
+                            <h1>{{$currentDay}}</h1>
                 <table class="display table table-bordered table-condensed table-responsive dynamic-table">
                     
                     <thead>
                         <tr>
-                            <th>Band: </th>
-                            <th>Zaal: </th>
-                            <th>Betaalmethode: </th>
-                            <th>Datum: </th>
-                            <th>Placeholder (delayed): </th>
+                            <th>Maandag</th>
+                            <th>Dinsdag</th>
+                            <th>Woensdag</th>
+                            <th>Donderdag</th>
+                            <th>Vrijdag</th>
                         </tr>
                     </thead>
 
@@ -33,7 +33,8 @@
                         <td>{{ $temporary_reservation->Payment_Method->payment_method_name }}</td>
                         <td>{{ $temporary_reservation->temp_reservation_date }}</td>
                         <td>{{ $temporary_reservation->temp_delayed }}</td>
-                         <td><a href="{{ url('/roster/' . $temporary_reservation->id . '/edit') }}"><button class="btn btn-warning"><span class="glyphicon glyphicon-pencil"> Bijwerken</span></button></a></td>
+                         <td><a href="{{ url('/roster/' . $temporary_reservation->id . '/edit') }}"><button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button></a></td>
+                         <td><a href="{{ url('/roster/' . $temporary_reservation->id . '/edit') }}"><button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></a></td>
                     </tr>
                     @endforeach
                     </tbody>
