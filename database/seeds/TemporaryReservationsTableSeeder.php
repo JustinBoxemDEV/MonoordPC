@@ -19,6 +19,7 @@ class TemporaryReservationsTableSeeder extends Seeder
                         'room_id' => 1,
                         'temp_reservation_date' => '2017-07-07',
                         'temp_delayed' => 0,
+                        'processed' => 0,
                     ],
                     [
                         'band_id' => 2,
@@ -26,6 +27,7 @@ class TemporaryReservationsTableSeeder extends Seeder
                         'room_id' => 4,
                         'temp_reservation_date' => '2017-07-07',
                         'temp_delayed' => 0,
+                        'processed' => 1,
                     ],
                                         
         ]);
