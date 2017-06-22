@@ -2,10 +2,13 @@
 
 @section('content')
 <div class="container">
-    <h4>Aantal bands: {{ $totalBands }} (lars u can style this to the left plox)</h4>
-    <h4>Aantal users: {{ $totalUsers }} (lars u can style this to the right plox)</h4>
+    
     <div class="page-header">
-    <h1>Dashboard</h1>
+        <div class="row">
+            <div class="col-lg-4"><h3>Aantal bands: {{ $totalBands }}</h3></div>
+            <div class="col-lg-4"><h1>Dashboard</h1></div>
+            <div class="col-lg-4"><h3>Aantal users: {{ $totalUsers }}</h3></div>
+        </div>
     </div>
     
     <div class="dashboard-links">
@@ -22,7 +25,7 @@
     
         <div class="dashboard-overview">
         
-        
+            
      
         </div>
 
