@@ -8,7 +8,7 @@
                 <div class="panel-heading">Facturen</div>
 
                 <div class="panel-body">
-                    Hier komen alle facturen
+                    <img src="/images/memesayostartedtouse.jpg" style="width:600px; height:450px;">
                 </div>
             </div>
         </div>

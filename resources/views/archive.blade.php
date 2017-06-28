@@ -8,7 +8,7 @@
                 <div class="panel-heading">Archief</div>
 
                 <div class="panel-body">
-                    Hier komt het archief
+                    <img src="/images/PageStyleArchive.png" style="width:800px; height:470px;">
                 </div>
             </div>
         </div>
