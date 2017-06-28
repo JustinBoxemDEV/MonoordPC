@@ -5,10 +5,10 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Rooster</div>
+                <div class="panel-heading">Archief</div>
 
                 <div class="panel-body">
-                    Justin leert mij dit.
+                    Hier komt het archief
                 </div>
             </div>
         </div>
