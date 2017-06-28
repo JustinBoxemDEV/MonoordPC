@@ -8,7 +8,7 @@
                 <div class="panel-heading">Rooster</div>
 
                 <div class="panel-body">
-                    Factuurtjes
+                    En terug...
                 </div>
             </div>
         </div>
