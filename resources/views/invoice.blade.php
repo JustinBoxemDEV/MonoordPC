@@ -8,7 +8,7 @@
                 <div class="panel-heading">Rooster</div>
 
                 <div class="panel-body">
-                    Welkom op Ted zijn trouwdag.
+                    Factuurtjes
                 </div>
             </div>
         </div>
