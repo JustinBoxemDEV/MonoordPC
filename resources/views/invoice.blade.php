@@ -8,7 +8,7 @@
                 <div class="panel-heading">Facturen</div>
 
                 <div class="panel-body">
-                    <img src="/images/memesayostartedtouse.jpg" style="width:600px; height:450px;">
+                    <img src="/images/PageStyleInvoice.png" style="width:600px; height:450px;">
                 </div>
             </div>
         </div>
