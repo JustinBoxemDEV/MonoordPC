@@ -27,42 +27,37 @@
         
             <div class="roster_table">
                 
-<!--                <table class="display table table-bordered table-condensed table-responsive dynamic-table">
+                <table class="display table table-bordered table-condensed table-responsive dynamic-table">
                     
                     <thead>
                         <tr>
                             <th>Tijd</th>
                             <th>Reservering data</th>
-                            <th>Betaalmethode</th>
-                            <th>Bevestig</th>
-                            <th>Annuleer</th>
+                            <th>Bewerk</th>
                         </tr>
                     </thead>
 
                     <tbody>
                     <br>
                     @foreach($reservations as $reservation)
-                    <tr class="clickable-row" data-url="/roster/{{ $reservation->id }}">
+                    <tr class="clickable-row" data-url="/reservation/{{ $reservation->id }}">
                         <td>
                             <h1>XX:XX</h1>
                         </td>
                         <td>
-                            <b>Band: </b>{{ $reservation->Band->band_name}} <br>
-                            <b>Datum: </b> {{ $temporary_reservation->temp_reservation_date }} <br>
-                            <b>Zaal: </b> {{ $temporary_reservation->Room->room_name }}</td>
-                        <td>{{ $temporary_reservation->Payment_Method->payment_method_name }}</td>
-                        <td><a href="{{ url('/roster/' . $temporary_reservation->id . '/edit') }}"><button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button></a></td>
-                        <td><a href="{{ url('/roster/' . $temporary_reservation->id . '/edit') }}"><button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></a></td>
+                            <b>Band: </b>{{ $reservation->id}} <br>
+                            <b>Betaalmethode: </b> {{ $reservation->Payment_Method->payment_method_name }} <br>
+                            <b>Datum: </b> {{ $reservation->reservation_date }} <br>
+                            <b>Zaal: </b> {{ $reservation->Room->room_name }} <br>
+                            <b>Reservation Status: </b> {{ $reservation->Reservation_Status->reservation_status_name }}</td>            
+                       <td><a href="{{ url('/reservation/' . $reservation->id . '/edit') }}"><button class="btn btn-warning"><span class="glyphicon glyphicon-pencil"> Bijwerken</span></button></a></td>
                     </tr>
                     @endforeach
                     </tbody>
 
-                </table>-->
+                </table>
             
             </div>
      
         </div>
-
-
-
 @endsection

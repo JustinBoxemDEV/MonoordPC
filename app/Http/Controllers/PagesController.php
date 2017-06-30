@@ -29,7 +29,8 @@ class PagesController extends Controller {
             if($totalReservations == 0){
                 $totalReservations = "Er zijn momenteel geen reserveringen";
             }
-            return view('dashboard', compact('totalBands', 'totalUsers', 'totalReservations', 'currentDay'));
+            $reservations = Reservation::all();
+            return view('dashboard', compact('totalBands', 'totalUsers', 'totalReservations', 'currentDay', 'reservations'));
         }
     }
 }
