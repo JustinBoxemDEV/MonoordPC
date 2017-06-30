@@ -16,11 +16,11 @@
                     
                     <thead>
                         <tr>
-                            <th>Maandag</th>
-                            <th>Dinsdag</th>
-                            <th>Woensdag</th>
-                            <th>Donderdag</th>
-                            <th>Vrijdag</th>
+                            <th>Tijd</th>
+                            <th>Reservering data</th>
+                            <th>Betaalmethode</th>
+                            <th>Bevestig</th>
+                            <th>Annuleer</th>
                         </tr>
                     </thead>
 
@@ -28,13 +28,16 @@
                     <br>
                     @foreach($temporary_reservations as $temporary_reservation)
                     <tr class="clickable-row" data-url="/roster/{{ $temporary_reservation->id }}">
-                        <td>{{ $temporary_reservation->Band->band_name}}</td>
-                        <td>{{ $temporary_reservation->Room->room_name }}</td>
+                        <td>
+                            <h1>XX:XX</h1>
+                        </td>
+                        <td>
+                            <b>Band: </b>{{ $temporary_reservation->Band->band_name}} <br>
+                            <b>Datum: </b> {{ $temporary_reservation->temp_reservation_date }} <br>
+                            <b>Zaal: </b> {{ $temporary_reservation->Room->room_name }}</td>
                         <td>{{ $temporary_reservation->Payment_Method->payment_method_name }}</td>
-                        <td>{{ $temporary_reservation->temp_reservation_date }}</td>
-                        <td>{{ $temporary_reservation->temp_delayed }}</td>
-                         <td><a href="{{ url('/roster/' . $temporary_reservation->id . '/edit') }}"><button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button></a></td>
-                         <td><a href="{{ url('/roster/' . $temporary_reservation->id . '/edit') }}"><button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></a></td>
+                        <td><a href="{{ url('/roster/' . $temporary_reservation->id . '/edit') }}"><button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button></a></td>
+                        <td><a href="{{ url('/roster/' . $temporary_reservation->id . '/edit') }}"><button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></a></td>
                     </tr>
                     @endforeach
                     </tbody>

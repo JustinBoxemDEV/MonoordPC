@@ -23,8 +23,8 @@
             <td>{{ $user->email }}</td>
             <td>{{ $user->firstname }}</td>
             <td>{{ $user->lastname }}</td>
-            <td>{{ $user->is_admin }}</td>
-            <td>{{ $user->is_verified }}</td>
+            <td>{{ $user->is_admin ? 'Ja' : 'Nee'}}</td>
+            <td>{{ $user->is_verified ? 'Ja' : 'Nee'}}</td>
             <td><a href="{{ url('/users', array('id' => $user->id)) }}"><button class="btn btn-warning"><span class="glyphicon glyphicon-info-sign"> Info</span></button></a></td>
             <td><a href="{{ url('/users/' . $user->id . '/edit') }}"><button class="btn btn-warning"><span class="glyphicon glyphicon-pencil"> Bijwerken</span></button></a></td>
             {!! Form::open(array('route' => array('users.destroy', $user->id), 'method' => 'delete')) !!}

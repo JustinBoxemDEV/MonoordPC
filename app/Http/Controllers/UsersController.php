@@ -83,12 +83,10 @@ class UsersController extends Controller
         if (empty($newPassword)) {
             $user->update($request->except('password'));
         } else {
-            $consolevar = bcrypt($request->get('password'));
-            dd($consolevar);
-            
+            $user->password = bcrypt($request->get('password'));
+            $user->update($request->all());
         }
-        $user->update($request->all());
-        return redirect('/users/' . $id)->with('succes');
+        return redirect('/users/' . $id)->with('succes');    
     }
 
     /**
