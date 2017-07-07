@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use \PDF;
 
 class UsersController extends Controller
 {
@@ -27,6 +28,8 @@ class UsersController extends Controller
     public function create()
     {
         return view('users.create');
+        //$pdf = PDF::loadView('invoice');
+        //return $pdf->stream('invoice.pdf');
     }
 
     /**
