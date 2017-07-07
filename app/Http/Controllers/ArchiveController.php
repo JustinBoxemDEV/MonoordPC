@@ -19,7 +19,7 @@ class ArchiveController extends Controller
         $tempReservations = Temporary_Reservations::all();
         return view('archive', compact('tempReservations', 'reservations'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
