@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     
-    <div class="page-header">
+    <div class="pagel-header">
         <div class="row">
-            <div class="col-lg-4"><h1>Dashboard</h1></div>
+            <div class="panel-heading"><h1>Archief</h1></div>
         </div>
     </div>
     

@@ -23,7 +23,7 @@
                         </div>
                         <div class='col-lg-6'>
                             
-                            <div class="jumbotron" style="
+                            <div class="jumbotron bannerlogo " style="
                                 background: url(http://vedetti.nl/wp-content/uploads/2017/03/mon.jpg) 
                                 no-repeat center center fixed; 
                                 -webkit-background-size: cover;
