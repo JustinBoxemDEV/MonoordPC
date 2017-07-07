@@ -42,6 +42,7 @@
                             <h1>XX:XX</h1>
                         </td>
                         <td>
+                            <b>Type reservering: </b>Tijdelijke Reservering <br>
                             <b>Band: </b>{{ $tempReservation->id}} <br>
                             <b>Betaalmethode: </b> {{ $tempReservation->Payment_Method->payment_method_name }} <br>
                             <b>Datum: </b> {{ $tempReservation->temp_reservation_date }} <br>
@@ -55,6 +56,7 @@
                             <h1>XX:XX</h1>
                         </td>
                         <td>
+                            <b>Type reservering: </b>Reservering <br>
                             <b>Band: </b>{{ $reservation->id}} <br>
                             <b>Betaalmethode: </b> {{ $reservation->Payment_Method->payment_method_name }} <br>
                             <b>Zaal: </b> {{ $reservation->Room->room_name }} <br>           

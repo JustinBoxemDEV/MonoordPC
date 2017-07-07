@@ -29,7 +29,7 @@ class validate {
 }
 
 class user {
-    
+        
 	protected $query;
 	private $connection;
 
@@ -41,13 +41,22 @@ class user {
 		$this->query = $query;
 	}
 
-	public function changepassword($userid, $oudwachtwoord, $nieuwwachtwoord, $bevestigdwachtwoord) {
+	public function changePassword($userid, $nieuwwachtwoord, $bevestigdwachtwoord) {
 		$query = setQuery("SELECT password FROM users WHERE id = '$userid'");
 		$result = $this->connection->sql($query)->fetch_assoc();
 		echo $result['password'];
                 if ($nieuwwachtwoord === $bevestigdwachtwoord) {
 		}
 	}
+        
+        public function getUserData($email){
+            $query = setQuery("SELECT id, email, firstname, lastname FROM users WHERE email = '$email'");
+		$result = $this->connection->sql($query)->fetch_assoc();
+		echo $result['id'];
+                echo $result['email'];
+                echo $result['firstname'];
+                echo $result['lastname'];
+        }
 }
 
 class tempReservation{
