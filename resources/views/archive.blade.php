@@ -5,7 +5,16 @@
     
     <div class="page-header">
         <div class="row">
+            <div class="col-lg-4"></div>
             <div class="col-lg-4"><h1>Dashboard</h1></div>
+            <div class="col-lg-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-1"><input type="date" id="datetime1"/></div>
+            <div class="col-lg-2"><b>T/M</b></div>
+            <div class="col-lg-1"><input type="date" id="datetime2"/></div>
+            <div class="col-lg-4"></div>
         </div>
     </div>
     
