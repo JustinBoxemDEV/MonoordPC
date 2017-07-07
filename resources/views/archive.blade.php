@@ -5,7 +5,9 @@
     
     <div class="pagel-header">
         <div class="row">
-            <div class="panel-heading"><h1>Archief</h1></div>
+            <div class="col-lg-4"></div>
+            <div class="panel-heading"><div class="panel-heading"><h1>Archief</h1></div></div>
+            <div class="panel-heading"></div>
         </div>
     </div>
     
