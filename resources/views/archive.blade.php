@@ -2,10 +2,16 @@
 
 @section('content')
 <div class="container">
-    
-    <div class="page-header">
+    <div class="pagel-header">
         <div class="row">
-            <div class="col-lg-4"><h1>Dashboard</h1></div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4"><div class="panel-heading"><h1>Archief</h1></div></div>
+            <div class="col-lg-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4"><input type="date" name="dateInputArchive1"/><b>T/M</b><input type="date" name="dateInputArchive2"/><input type='button' id='dateInputArchive' class='btn btn-danger' value='Zoek'></div>
+            <div class="col-lg-4"></div>
         </div>
     </div>
     
@@ -42,6 +48,7 @@
                             <h1>XX:XX</h1>
                         </td>
                         <td>
+                            <b>Type reservering: </b>Tijdelijke Reservering <br>
                             <b>Band: </b>{{ $tempReservation->id}} <br>
                             <b>Betaalmethode: </b> {{ $tempReservation->Payment_Method->payment_method_name }} <br>
                             <b>Datum: </b> {{ $tempReservation->temp_reservation_date }} <br>
@@ -55,6 +62,7 @@
                             <h1>XX:XX</h1>
                         </td>
                         <td>
+                            <b>Type reservering: </b>Reservering <br>
                             <b>Band: </b>{{ $reservation->id}} <br>
                             <b>Betaalmethode: </b> {{ $reservation->Payment_Method->payment_method_name }} <br>
                             <b>Zaal: </b> {{ $reservation->Room->room_name }} <br>           

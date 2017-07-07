@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'PagesController@index');
+Route::get('/archive2', 'ArchiveController@index2');
 Auth::routes();
         
 Route::resource('/roster', 'RosterController');
