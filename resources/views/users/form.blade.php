@@ -5,10 +5,6 @@
         <div class="panel-heading">Gebruikersbeheer</div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-lg-6">{{ Form::label('name', 'Gebruikersnaam: ') }}</div>
-                <div class="col-lg-6">{{ Form::text('name')}}</div>
-            </div>
-            <div class="row">
                 <div class="col-lg-6">{{ Form::label('password', 'Wachtwoord: ') }}</div>
                 <div class="col-lg-6">{{ Form::password('password')}}</div>
             </div>
