@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="pagel-header">
+    <div class="page-header">
         <div class="row">
             <div class="col-lg-4"></div>
             <div class="col-lg-4"><div class="panel-heading"><h1>Archief</h1></div></div>

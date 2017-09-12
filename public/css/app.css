@@ -1,6 +1,13 @@
 .container{
     text-align: center;
 }
+
+.page-header{
+    
+    margin-top: 0%;
+    
+}
+
 .navbar-fixed-bottom{
     text-align: center;
     background-color:#47534e;
