@@ -1,7 +1,7 @@
 <?php
-define('DB_HOST','portaal.spacehorizons.nl');
+define('DB_HOST','server.sandhoofd.nl');
 define('DB_USER','monoord');
-define('DB_PASS' ,'sCAIagiVmTROPH2r!');
+define('DB_PASS' ,'vbh7rv7nAqhQwbkn!');
 define('DB_NAME', 'monoord');
 
 class DB_con {
