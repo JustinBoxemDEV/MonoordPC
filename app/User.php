@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\User_Address;
-use App\Band_User_Bridge;
+use App\Band;
 
 class User extends Authenticatable
 {
@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'firstname', 'lastname', 'is_admin', 'is_verified', 'verification_code', 'is_deleted',
+       'email', 'password', 'firstname', 'lastname', 'is_admin', 'is_verified', 'verification_code', 'is_deleted',
     ];
     
     public function User_Addresses() {
