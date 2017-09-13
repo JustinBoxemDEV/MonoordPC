@@ -27,9 +27,9 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //return view('users.create');
-        $pdf = PDF::loadView('PDF/invoice');
-        return $pdf->stream('invoice.pdf');
+        return view('users.create');
+        //$pdf = PDF::loadView('PDF/invoice');
+        //return $pdf->stream('invoice.pdf');
     }
 
     /**
