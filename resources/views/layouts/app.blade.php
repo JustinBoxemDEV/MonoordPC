@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.js%22%3E"></script>
 
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -27,10 +27,11 @@
 
         <!-- Scripts -->
         <script>
-    window.Laravel = {!! json_encode([
+            window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
-    ]) !!};
+            ]) !!};
         </script>
+        
     </head>
     <body>
         <div id="app">
