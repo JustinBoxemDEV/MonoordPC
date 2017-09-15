@@ -84,10 +84,17 @@ class UsersController extends Controller
         $user = User::all()->find($id);
 //        $isAdmin = $request->input('is_admin');
 //        dd($request);
-//       if(! isset( $request['is_admin'] )
-//               { $request('is_admin') = '0' }
+            if (!$request->has('is_admin')) {
+                $request->merge(['is_admin' => 0]);
+            }
+            if (!$request->has('is_verified')) {
+                $request->merge(['is_verified' => 0]);
+            }
+            
        if(empty($request->get('password'))){
+
           $user->update($request->except('password')); 
+          
         } else {
           $newPassword = bcrypt($request->get('password'));
           $request['password'] = $newPassword;
