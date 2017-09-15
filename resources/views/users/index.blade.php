@@ -6,7 +6,6 @@
         <b><h1><a href="{{ url('/users/create') }}">Voeg gebruiker toe</a></h1></b>
         <thead>
             <tr>
-                <th>Naam: </th>
                 <th>Email: </th>
                 <th>Voornaam: </th>
                 <th>Achternaam: </th>
@@ -19,7 +18,6 @@
         <br>
         @foreach($users as $user)
         <tr class="clickable-row" data-url="/users/{{ $user->id }}">
-            <td>{{ $user->name}}</td>
             <td>{{ $user->email }}</td>
             <td>{{ $user->firstname }}</td>
             <td>{{ $user->lastname }}</td>

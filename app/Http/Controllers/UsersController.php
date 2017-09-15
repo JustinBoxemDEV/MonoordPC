@@ -42,6 +42,7 @@ class UsersController extends Controller
     {
         $user = new User;
         $user->fill($request->all());
+        $user->password = bcrypt($request->get('password'));
         $user->save();
 
         return redirect('/users')->with('success');
@@ -81,15 +82,18 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::all()->find($id);
-        $newPassword = $request->get('password');
-
-        if (empty($newPassword)) {
-            $user->update($request->except('password'));
+//        $isAdmin = $request->input('is_admin');
+//        dd($request);
+//       if(! isset( $request['is_admin'] )
+//               { $request('is_admin') = '0' }
+       if(empty($request->get('password'))){
+          $user->update($request->except('password')); 
         } else {
-            $user->password = bcrypt($request->get('password'));
-            $user->update($request->all());
-        }
-        return redirect('/users/' . $id)->with('succes');    
+          $newPassword = bcrypt($request->get('password'));
+          $request['password'] = $newPassword;
+          $user->update($request->all());
+       }
+        return redirect('/users/')->with('succes');    
     }
 
     /**
