@@ -49,13 +49,19 @@ class user {
 		}
 	}
         
-        public function getUserData($email){
+        public function getUserData($email) {
             $query = setQuery("SELECT id, email, firstname, lastname FROM users WHERE email = '$email'");
-		$result = $this->connection->sql($query)->fetch_assoc();
-		echo $result['id'];
-                echo $result['email'];
-                echo $result['firstname'];
-                echo $result['lastname'];
+            $result = $this->connection->sql($query)->fetch_assoc();
+            echo $result['id'];
+            echo $result['email'];
+            echo $result['firstname'];
+            echo $result['lastname'];
+        }
+
+        public function getUserBands($userID){
+            $query = setQuery("SELECT b.id, b.band_name FROM bands as b INNER JOIN band__user__bridges as bu ON b.id = bu.band_id INNER JOIN users as u ON u.id = bu.user_id WHERE u.id = '$userID';");
+            $result = $this->connection->sql($query)->fetch_assoc();
+            echo $result['id'];
         }
 }
 
@@ -91,5 +97,21 @@ class tempReservation{
         var_dump($this->query);
         $this->connection->sql($this->query);
     }
+}
+
+class rooms {
+        
+	protected $query;
+	private $connection;
+
+	public function __construct() {
+		$this->connection = new DB_con();
+	}
+        
+        public function getAvailableRooms(){
+            $query = setQuery("SELECT room_name FROM rooms WHERE rent_status != 1");
+            $result = $this->connection->sql($query)->fetch_assoc();
+            return $result['room_name'];
+        }
 }
 ?>
