@@ -36,14 +36,6 @@ class user {
 	public function __construct() {
 		$this->connection = new DB_con();
 	}
-
-	public function changePassword($userid, $nieuwwachtwoord, $bevestigdwachtwoord) {
-		$query = "SELECT password FROM users WHERE id = '$userid'";
-		$result = $this->connection->sql($query)->fetch_assoc();
-		echo $result['password'];
-                if ($nieuwwachtwoord === $bevestigdwachtwoord) {
-		}
-	}
         
         public function sendRecoveryMail($email) {
             $token = "";
@@ -62,19 +54,26 @@ class user {
             mail($email,$topic,$message,$from);
         }
 
-    public function getUserData($email) {
+        public function getUserData($email) {
+            $array = array();
             $query = "SELECT id, email, firstname, lastname FROM users WHERE email = '$email'";
-            $result = $this->connection->sql($query)->fetch_assoc();
-            echo $result['id'];
-            echo $result['email'];
-            echo $result['firstname'];
-            echo $result['lastname'];
+            $result = $this->connection->sql($query);
+            while ($row = mysqli_fetch_assoc($result)) {
+                array_push($array, array("id"=>$row['id'], "email"=>$row['email'], "firstname"=>$row['firstname'], "lastname"=>$row['lastname']));
+            }
+            $json = json_encode(array("server_response:"=>$array));
+            return $json;
         }
 
         public function getUserBands($userID){
+            $array = array();
             $query = "SELECT b.id, b.band_name FROM bands as b INNER JOIN band__user__bridges as bu ON b.id = bu.band_id INNER JOIN users as u ON u.id = bu.user_id WHERE u.id = '$userID';";
-            $result = $this->connection->sql($query)->fetch_assoc();
-            echo $result['id'];
+            $result = $this->connection->sql($query);
+            while ($row = mysqli_fetch_assoc($result)) {
+                array_push($array, $row['band_name']);
+            }
+            $json = json_encode(array("server_response:"=>$array));
+            return $json;
         }
 }
 
@@ -96,6 +95,9 @@ class tempReservation{
     public function createTempReservation($band_id, $payment_method_id, $room_id, $temp_reservation_date){
         $query = "INSERT INTO `monoord`.`temporary__reservations` (`id`, `band_id`, `payment_method_id`, `room_id`, `temp_reservation_date`, `temp_delayed`, `processed`, `created_at`, `updated_at`) VALUES (NULL, '$band_id', '$payment_method_id', '$room_id', '$temp_reservation_date', '0', '0', NULL, NULL);";
         $this->connection->sql($query);
+        $msg = "Gelukt";
+        $json = json_encode(array("server_response:"=>$msg));
+        return $json;
     }
     
     public function getCreatedAt($temp_reservation_id){
