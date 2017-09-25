@@ -121,9 +121,9 @@ class rooms {
 	public function __construct() {
 		$this->connection = new DB_con();
 	}
-        //Get all rooms based on params of time, day und room toip.
+        //Get all rooms based on params of time, day und rent_state.
         public function getAvailableRooms(){
-            $query = "SELECT room_name FROM rooms WHERE rent_status != 1";
+            $query = "SELECT room_name FROM rooms WHERE -condition-";
             $result = $this->connection->sql($query)->fetch_assoc();
             return $result['room_name'];
         }
