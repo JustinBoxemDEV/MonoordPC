@@ -16,16 +16,16 @@
 
         <tbody>
         <br>
-        @foreach($users as $user)
-        <tr class="clickable-row" data-url="/users/{{ $user->id }}">
-            <td>{{ $user->email }}</td>
-            <td>{{ $user->firstname }}</td>
-            <td>{{ $user->lastname }}</td>
-            <td>{{ $user->is_admin ? 'Ja' : 'Nee'}}</td>
-            <td>{{ $user->is_verified ? 'Ja' : 'Nee'}}</td>
-            <td><a href="{{ url('/users', array('id' => $user->id)) }}"><button class="btn btn-warning"><span class="glyphicon glyphicon-info-sign"> Info</span></button></a></td>
-            <td><a href="{{ url('/users/' . $user->id . '/edit') }}"><button class="btn btn-warning"><span class="glyphicon glyphicon-pencil"> Bijwerken</span></button></a></td>
-            {!! Form::open(array('route' => array('users.destroy', $user->id), 'method' => 'delete')) !!}
+        @foreach($usersToShow as $userToShow)
+        <tr class="clickable-row" data-url="/users/{{ $userToShow->id }}">
+            <td>{{ $userToShow->email }}</td>
+            <td>{{ $userToShow->firstname }}</td>
+            <td>{{ $userToShow->lastname }}</td>
+            <td>{{ $userToShow->is_admin ? 'Ja' : 'Nee'}}</td>
+            <td>{{ $userToShow->is_verified ? 'Ja' : 'Nee'}}</td>
+            <td><a href="{{ url('/users', array('id' => $userToShow->id)) }}"><button class="btn btn-warning"><span class="glyphicon glyphicon-info-sign"> Info</span></button></a></td>
+            <td><a href="{{ url('/users/' . $userToShow->id . '/edit') }}"><button class="btn btn-warning"><span class="glyphicon glyphicon-pencil"> Bijwerken</span></button></a></td>
+            {!! Form::open(array('route' => array('users.destroy', $userToShow->id), 'method' => 'delete')) !!}
             <td><button class="btn btn-danger" data-toggle="confirmation" type="submit">Verwijderen</button></td>
             {!! Form::close() !!}
         </tr>

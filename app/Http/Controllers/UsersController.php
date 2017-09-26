@@ -15,9 +15,10 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all(); 
+        $users = User::all();
+        $usersToShow = User::where('is_deleted', 0);
         
-        return view('users.index', compact('users'));
+        return view('users.index', compact('usersToShow'));
     }
 
     /**
@@ -108,10 +109,18 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+//        $user = User::all()->find($id);
+//        $user->delete();
+//        return redirect('/users/')->with('succes');
+        
         $user = User::all()->find($id);
-        $user->delete();
+        if (!$request->has('is_deleted')) {
+            $request->merge(['is_deleted' => 1]);
+        }
+        //$deactivate = $request->get('is_deleted');
+        $user->update($request->all());
         return redirect('/users/')->with('succes');
 
     }
