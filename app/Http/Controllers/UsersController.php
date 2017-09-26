@@ -113,5 +113,7 @@ class UsersController extends Controller
         $user = User::all()->find($id);
         $user->delete();
         return redirect('/users/')->with('succes');
+
     }
+
 }
