@@ -16,7 +16,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
-        $usersToShow = User::where('is_deleted', 0);
+        $usersToShow = $users->where('is_deleted', '=', 0);
         
         return view('users.index', compact('usersToShow'));
     }

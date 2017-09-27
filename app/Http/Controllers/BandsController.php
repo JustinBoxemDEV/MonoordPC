@@ -15,7 +15,9 @@ class BandsController extends Controller
     public function index()
     {
         $bands = Band::all();
-        return view('bands.index', compact('bands'));
+        $bandsToShow = $bands->where('is_deleted', '=', 0);
+        
+        return view('bands.index', compact('bandsToShow'));
     }
 
     /**
@@ -87,10 +89,19 @@ class BandsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+//        $user = User::all()->find($id);
+//        $user->delete();
+//        return redirect('/users/')->with('succes');
+        
         $band = Band::all()->find($id);
-        $band->delete();
+        if (!$request->has('is_deleted')) {
+            $request->merge(['is_deleted' => 1]);
+        }
+        //$deactivate = $request->get('is_deleted');
+        $band->update($request->all());
         return redirect('/bands/')->with('succes');
+
     }
 }
