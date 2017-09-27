@@ -90,11 +90,7 @@ class BandsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)
-    {
-//        $user = User::all()->find($id);
-//        $user->delete();
-//        return redirect('/users/')->with('succes');
-        
+    {   
         $band = Band::all()->find($id);
         if (!$request->has('is_deleted')) {
             $request->merge(['is_deleted' => 1]);
