@@ -10,7 +10,7 @@ use App\Temporary_Reservation;
 class Room extends Model
 {
     protected $fillable = [
-        'id', 'room_type_id', 'room_name', 'rent_status',
+        'id', 'room_type_id', 'room_name', //'rent_status',
     ];
      
     public function Room_Types() {

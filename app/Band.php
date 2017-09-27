@@ -9,7 +9,7 @@ use App\Temporary_Reservation;
 class Band extends Model
 {
     protected $fillable = [
-        'id', 'band_name', 'band_credits',
+        'id', 'band_name', 'band_credits', 'is_deleted',
     ];
      
     public function Band_User_Bridge() {
