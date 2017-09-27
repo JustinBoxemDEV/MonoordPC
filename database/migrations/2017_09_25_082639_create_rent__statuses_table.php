@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBandsTable extends Migration
+class CreateRentStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateBandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bands', function (Blueprint $table) {
+        Schema::create('rent__statuses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('band_name', 100);
-            $table->integer('band_credits')->default(0);
-            $table->boolean('is_deleted')->default(0);
+            $table->integer('room_rent_status_id')->unsigned();
+            $table->time('time');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateBandsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bands');
+        Schema::dropIfExists('rent__statuses');
     }
 }
