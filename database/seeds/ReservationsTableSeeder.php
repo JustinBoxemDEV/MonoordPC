@@ -18,7 +18,7 @@ class ReservationsTableSeeder extends Seeder
                         'payment_method_id' => 1,
                         'room_id' => 4,
                         'reservation_status_id' => 1,
-                        'reservation_date' => '2017-07-07',
+                        'reservation_date' => '2017-07-07 13:00:00',
                         'delayed' => 0,
                     ],
                     [
