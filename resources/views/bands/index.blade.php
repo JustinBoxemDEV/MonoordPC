@@ -14,15 +14,15 @@
 
         <tbody>
         <br>
-        @foreach($bands as $band)
-        <tr class="clickable-row" data-url="/bands/{{ $band->id }}">
-            <td>{{ $band->id}}</td>
-            <td>{{ $band->band_name }}</td>
-            <td>{{ $band->band_credits }}</td>
-            <td><a href="{{ url('/bands', array('id' => $band->id)) }}"><button class="btn btn-warning"><span class="glyphicon glyphicon-info-sign"> Info</span></button></a></td>
-            <td><a href="{{ url('/bands/' . $band->id . '/edit') }}"><button class="btn btn-warning"><span class="glyphicon glyphicon-pencil"> Bijwerken</span></button></a></td>
-            {!! Form::open(array('route' => array('bands.destroy', $band->id), 'method' => 'delete')) !!}
-            <td><button class="btn btn-danger"  data-toggle="confirmation" type="submit"><i class="fa fa-times"></i><span class="glyphicon glyphicon-trash"> Verwijder</span></button></td>
+        @foreach($bandsToShow as $bandToShow)
+        <tr class="clickable-row" data-url="/bands/{{ $bandToShow->id }}">
+            <td>{{ $bandToShow->id}}</td>
+            <td>{{ $bandToShow->band_name }}</td>
+            <td>{{ $bandToShow->band_credits }}</td>
+            <td><a href="{{ url('/bands', array('id' => $bandToShow->id)) }}"><button class="btn btn-warning"><span class="glyphicon glyphicon-info-sign"> Info</span></button></a></td>
+            <td><a href="{{ url('/bands/' . $bandToShow->id . '/edit') }}"><button class="btn btn-warning"><span class="glyphicon glyphicon-pencil"> Bijwerken</span></button></a></td>
+            {!! Form::open(array('route' => array('bands.destroy', $bandToShow->id), 'method' => 'delete')) !!}
+            <td><button class="btn btn-danger delBtn" onclick="return confirm('Weet je zeker dat je deze band wilt verwijderen?')" data-toggle="confirmation" type="submit">Verwijderen</button></td>
             {!! Form::close() !!}
         </tr>
         @endforeach
