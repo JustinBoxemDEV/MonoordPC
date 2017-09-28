@@ -101,15 +101,22 @@ class tempReservation{
     }
     
     public function getCreatedAt($temp_reservation_id){
+        $array = array();
         $query = "SELECT created_at FROM temporary__reservations WHERE id = '$temp_reservation_id'";
         $result = $this->connection->sql($query)->fetch_assoc();
-	return $result['created_at'];
+	while ($row = mysqli_fetch_assoc($result)) {
+            array_push($array, $row['band_name']);
+        }
+        $json = json_encode(array("server_response:" => $array));
+        return $json;
     }
     
     public function cancelTempReservation($temp_reservation_id, $updated_at, $created_at){
         $query = "UPDATE `monoord`.`temporary__reservations` SET `temp_delayed` = '1', `updated_at` = $updated_at WHERE `temporary__reservations`.`id` = $temp_reservation_id AND $created_at >= NOW() - INTERVAL 1 DAY);";
-        var_dump($query);
         $this->connection->sql($query);
+        $msg = "Tijdelijke reservering geannuleerd";
+        $json = json_encode(array("server_response:"=>$msg));
+        return $json;
     }
 }
 
@@ -121,11 +128,20 @@ class rooms {
 	public function __construct() {
 		$this->connection = new DB_con();
 	}
-        //Get all rooms based on params of time, day und rent_state.
+        
+        //Get all rooms based on params of datetime and display if not within range of an existing start and end date.
         public function getAvailableRooms(){
-            $query = "SELECT room_name FROM rooms WHERE -condition-";
-            $result = $this->connection->sql($query)->fetch_assoc();
-            return $result['room_name'];
+            $array = array();
+            $query = "SELECT ro.id, ro.room_name FROM rooms AS ro LEFT JOIN temporaryreservations AS tr ON ro.id = tr.room_id "
+                    . "LEFT JOIN reservations AS re ON ro.id = re.room_id "
+                    . "WHERE ro.id NOT IN (SELECT room_id FROM temporaryreservations WHERE processed != 1) "
+                    . "AND ro.id NOT IN (SELECT room_id FROM reservations)";
+            $result = $this->connection->sql($query);
+            while ($row = mysqli_fetch_assoc($result)) {
+                array_push($array, $row['room_name']);
+            }
+            $json = json_encode(array("server_response:"=>$array));
+            return $json;
         }
 }
 ?>
