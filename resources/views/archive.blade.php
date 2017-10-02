@@ -10,7 +10,12 @@
         </div>
         <div class="row">
             <div class="col-lg-4"></div>
-            <div class="col-lg-4"><input type="date" name="dateInputArchive1"/><b>T/M</b><input type="date" name="dateInputArchive2"/><input type='button' id='dateInputArchive' class='btn btn-danger' value='Zoek'></div>
+            <div class="col-lg-4">
+                <input type="date" name="dateInputArchive1"/>
+                <b>T/M</b>
+                <input type="date" name="dateInputArchive2"/>
+                <input type="button" id="dateInputArchive" class="btn btn-danger" value="Zoek"/>
+            </div>
             <div class="col-lg-4"></div>
         </div>
     </div>
