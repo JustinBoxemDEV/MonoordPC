@@ -132,9 +132,9 @@ class rooms {
         //Get all rooms based on params of datetime and display if not within range of an existing start and end date.
         public function getAvailableRooms(){
             $array = array();
-            $query = "SELECT ro.id, ro.room_name FROM rooms AS ro LEFT JOIN temporaryreservations AS tr ON ro.id = tr.room_id "
+            $query = "SELECT ro.id, ro.room_name FROM rooms AS ro LEFT JOIN temporary__reservations AS tr ON ro.id = tr.room_id "
                     . "LEFT JOIN reservations AS re ON ro.id = re.room_id "
-                    . "WHERE ro.id NOT IN (SELECT room_id FROM temporaryreservations WHERE processed != 1) "
+                    . "WHERE ro.id NOT IN (SELECT room_id FROM temporary__reservations WHERE processed != 1) "
                     . "AND ro.id NOT IN (SELECT room_id FROM reservations)";
             $result = $this->connection->sql($query);
             while ($row = mysqli_fetch_assoc($result)) {
