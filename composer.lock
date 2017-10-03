@@ -125,16 +125,16 @@
         },
         {
             "name": "consoletvs/invoices",
-            "version": "1.0.5",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ConsoleTVs/Invoices.git",
-                "reference": "197c5abba969406eb832fcfa571e473ac3bdcef3"
+                "reference": "07e6b3f2ec202e20a600fc34a79ebdab30e552de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ConsoleTVs/Invoices/zipball/197c5abba969406eb832fcfa571e473ac3bdcef3",
-                "reference": "197c5abba969406eb832fcfa571e473ac3bdcef3",
+                "url": "https://api.github.com/repos/ConsoleTVs/Invoices/zipball/07e6b3f2ec202e20a600fc34a79ebdab30e552de",
+                "reference": "07e6b3f2ec202e20a600fc34a79ebdab30e552de",
                 "shasum": ""
             },
             "require": {
@@ -178,7 +178,7 @@
                 "open source",
                 "pdf"
             ],
-            "time": "2017-09-17T13:59:23+00:00"
+            "time": "2017-09-29T18:35:27+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",

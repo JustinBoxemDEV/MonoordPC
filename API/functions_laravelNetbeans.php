@@ -120,6 +120,35 @@ class tempReservation{
     }
 }
 
+class Reservation{
+    
+    protected $query;
+    private $connection;
+    
+    public function __construct() 
+        {
+            $this->connection = new DB_con();
+        }
+        
+    public function setQuery($query) 
+        {
+            $this->query = $query;
+        }
+        
+    public function getReservation($band_id){
+        $array = array();
+        $query = "SELECT re.id, re.room_id, re.reservation_time_start, re.reservation_time_end FROM reservations AS re'"
+                ."LEFT JOIN temporary__reservations AS tr ON re.id = tr.id "
+                ."WHERE tr.band_id = $band_id";
+        $result = $this->connection->sql($query)->fetch_assoc();
+	while ($row = mysqli_fetch_assoc($result)) {
+            array_push($array, $row);
+        }
+        $json = json_encode(array("server_response:" => $array));
+        return $json;
+    }
+}
+
 class rooms {
         
 	protected $query;

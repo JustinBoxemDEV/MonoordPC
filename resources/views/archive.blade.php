@@ -1,3 +1,17 @@
+<script text="javascript">
+$('#dateInputArchive').click(function () {
+    //alert('You have put the app in maintenance mode.');
+    $.ajax({
+        method: 'post',      // Should I use post? or get? I am just wanting to run the function when the .click() function is run
+        url: '/archive',     // Not sure what should be used for url since I just want to call a function
+        data: function(){
+            var startTime = $('#dateInputArchive1').value;
+            var endTime = $('#dateInputArchive2').value;
+            }
+        });         
+});
+</script>
+
 @extends('layouts.app')
 
 @section('content')
@@ -14,7 +28,7 @@
                 <input type="date" name="dateInputArchive1"/>
                 <b>T/M</b>
                 <input type="date" name="dateInputArchive2"/>
-                <input type="button" id="dateInputArchive" class="btn btn-danger" value="Zoek"/>
+                <input type='button' id='dateInputArchive' class='btn btn-danger' value='Zoek'/>
             </div>
             <div class="col-lg-4"></div>
         </div>
