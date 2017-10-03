@@ -137,9 +137,9 @@ class Reservation{
         
     public function getReservation($band_id){
         $array = array();
-        $query = "SELECT re.id, re.room_id, re.reservation_time_start, re.reservation_time_end FROM reservations AS re'"
-                ."LEFT JOIN temporary__reservations AS tr ON re.id = tr.id "
-                ."WHERE tr.band_id = $band_id";
+        $query = "SELECT re.id, re.room_id, re.reservation_time_start, re.reservation_time_end FROM reservations AS re
+                  RIGHT JOIN temporary__reservations AS tr ON re.temporary_reservations_id = tr.id
+                  WHERE tr.band_id = $band_id AND tr.processed = 1";
         $result = $this->connection->sql($query)->fetch_assoc();
 	while ($row = mysqli_fetch_assoc($result)) {
             array_push($array, $row);
