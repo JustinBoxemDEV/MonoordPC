@@ -11,7 +11,7 @@ use App\Reservation;
 class Temporary_Reservations extends Model
 {
     protected $fillable = [
-        'id', 'band_id', 'payment_method_id', 'room_id', 'temp_reservation_date', 'temp_delayed', 'processed',
+        'id', 'band_id', 'payment_method_id', 'room_id', 'temp_reservation_time_start', 'temp_reservation_time_end', 'temp_delayed', 'processed',
     ];
     
     public function Band() {

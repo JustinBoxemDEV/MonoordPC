@@ -11,7 +11,7 @@ use App\Reservation_Status;
 class Reservation extends Model
 {
     protected $fillable = [
-        'id', 'temporary_reservations_id', 'payment_method_id', 'room_id', 'reservation_status_id', 'reservation_date', 'delayed', 
+        'id', 'temporary_reservations_id', 'payment_method_id', 'room_id', 'reservation_status_id', 'reservation_time_start', 'reservation_time_end', 'delayed', 
     ];
     
     public function Temporary_Reservation() {

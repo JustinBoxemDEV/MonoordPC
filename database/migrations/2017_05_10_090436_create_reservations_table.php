@@ -19,7 +19,8 @@ class CreateReservationsTable extends Migration
             $table->integer('payment_method_id')->unsigned();
             $table->integer('room_id')->unsigned();
             $table->integer('reservation_status_id')->unsigned();
-            $table->datetime('reservation_date');
+            $table->datetime('reservation_time_start');
+            $table->datetime('reservation_time_end');
             $table->boolean('delayed');
             $table->timestamps();
         });
