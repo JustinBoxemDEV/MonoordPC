@@ -1,17 +1,3 @@
-<script text="javascript">
-$('#dateInputArchive').click(function () {
-    //alert('You have put the app in maintenance mode.');
-    $.ajax({
-        method: 'post',      // Should I use post? or get? I am just wanting to run the function when the .click() function is run
-        url: '/archive',     // Not sure what should be used for url since I just want to call a function
-        data: function(){
-            var startTime = $('#dateInputArchive1').value;
-            var endTime = $('#dateInputArchive2').value;
-            }
-        });         
-});
-</script>
-
 @extends('layouts.app')
 
 @section('content')
@@ -23,14 +9,17 @@ $('#dateInputArchive').click(function () {
             <div class="col-lg-4"></div>
         </div>
         <div class="row">
-            <div class="col-lg-4"></div>
-            <div class="col-lg-4">
-                <input type="date" name="dateInputArchive1"/>
-                <b>T/M</b>
-                <input type="date" name="dateInputArchive2"/>
-                <input type='button' id='dateInputArchive' class='btn btn-danger' value='Zoek'/>
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <form action="/archive" method="post">
+                    {{ csrf_field() }}
+                    <input type="date" id="dateInputArchive1" name="dateInputArchive1"/>
+                    <b>T/M</b>
+                    <input type="date" id="dateInputArchive2" name="dateInputArchive2"/>
+                    <input type='submit' id='dateInputArchiveButton' class='btn btn-danger' value='Zoek'/>
+                </form>
             </div>
-            <div class="col-lg-4"></div>
+            <div class="col-lg-3"></div>
         </div>
     </div>
     
@@ -70,7 +59,7 @@ $('#dateInputArchive').click(function () {
                             <b>Type reservering: </b>Tijdelijke Reservering <br>
                             <b>Band: </b>{{ $tempReservation->id}} <br>
                             <b>Betaalmethode: </b> {{ $tempReservation->Payment_Method->payment_method_name }} <br>
-                            <b>Datum: </b> {{ $tempReservation->temp_reservation_date }} <br>
+                            <b>Datum: </b> {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $tempReservation->temp_reservation_time_start)->format('d F Y') }}  <br>
                             <b>Zaal: </b> {{ $tempReservation->Room->room_name }} <br>           
                        <td><a href="{{ url('/archive/' . $tempReservation->id . '/edit') }}"><button class="btn btn-warning"><span class="glyphicon glyphicon-pencil"> Bijwerken</span></button></a></td>
                     </tr>
@@ -84,6 +73,7 @@ $('#dateInputArchive').click(function () {
                             <b>Type reservering: </b>Reservering <br>
                             <b>Band: </b>{{ $reservation->id}} <br>
                             <b>Betaalmethode: </b> {{ $reservation->Payment_Method->payment_method_name }} <br>
+                            <b>Datum: </b> {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $reservation->reservation_time_start)->format('d F Y') }}  <br>
                             <b>Zaal: </b> {{ $reservation->Room->room_name }} <br>           
                        <td><a href="{{ url('/archive/' . $reservation->id . '/edit') }}"><button class="btn btn-warning"><span class="glyphicon glyphicon-pencil"> Bijwerken</span></button></a></td>
                     </tr>

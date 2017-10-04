@@ -13,18 +13,11 @@ class ArchiveController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if ($request->ajax()) {
-            $reservations = Reservation::whereBetween('reservation_time_start', [$startTime, $endTime])->get();
-            $tempReservations = Temporary_Reservations::whereBetween('temp_reservation_time_start', [$startTime, $endTime])->get();
-            return view('archive', compact('tempReservations', 'reservations'));
-        }
-        else{
             $reservations = Reservation::all();
             $tempReservations = Temporary_Reservations::all();
             return view('archive', compact('tempReservations', 'reservations'));
-        }
     }
     
     /**
@@ -44,8 +37,12 @@ class ArchiveController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $startTime = $request['dateInputArchive1'];
+        $endTime = $request['dateInputArchive2'];
+        $reservations = Reservation::whereBetween('reservation_time_start', [$startTime, $endTime])->get();
+        $tempReservations = Temporary_Reservations::whereBetween('temp_reservation_time_start', [$startTime, $endTime])->get();
+        return view('archive', compact('tempReservations', 'reservations'));
     }
 
     /**

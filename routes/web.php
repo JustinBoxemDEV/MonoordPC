@@ -11,12 +11,11 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', 'PagesController@index');
 Route::get('/archive2', 'ArchiveController@index2');
 Route::get('/invoices/{invoice}/pdf', 'InvoiceController@generatePDF');
-Auth::routes();
-
-Route::post('/archive', 'ArchiveController@indexs');
 
 Route::resource('/roster', 'RosterController');
 Route::resource('/archive', 'ArchiveController');

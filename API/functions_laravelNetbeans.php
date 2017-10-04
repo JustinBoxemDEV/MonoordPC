@@ -3,7 +3,8 @@ include 'database.php';
 
 class validate {
 	protected $query;
-
+        
+        //Validate a specified user upon login into the android application.
 	public function vUser($par1, $par2) {
 
 		$this->query = "SELECT email,password FROM users WHERE email = '".$par1."'";
@@ -37,6 +38,7 @@ class user {
 		$this->connection = new DB_con();
 	}
         
+        //Send a recovery mail to a specified user.
         public function sendRecoveryMail($email) {
             $token = "";
             $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -53,7 +55,8 @@ class user {
             $message = "Geachte persoon, u heeft een mail ontvangen betreffende het resetten van uw wachtwoord. Wachtwoord reset code: $token";
             mail($email,$topic,$message,$from);
         }
-
+        
+        //Get all information from a specified user.
         public function getUserData($email) {
             $array = array();
             $query = "SELECT id, email, firstname, lastname FROM users WHERE email = '$email'";
@@ -64,7 +67,8 @@ class user {
             $json = json_encode(array("server_response:"=>$array));
             return $json;
         }
-
+        
+        //Get all bands from a specified user.
         public function getUserBands($userID){
             $array = array();
             $query = "SELECT b.id, b.band_name FROM bands as b INNER JOIN band__user__bridges as bu ON b.id = bu.band_id INNER JOIN users as u ON u.id = bu.user_id WHERE u.id = '$userID';";
@@ -91,7 +95,8 @@ class tempReservation{
         {
             $this->query = $query;
         }
-        
+    
+    //Create a temporary reservation (needs approval by system administrator within web app).
     public function createTempReservation($band_id, $payment_method_id, $room_id, $temp_reservation_date){
         $query = "INSERT INTO `monoord`.`temporary__reservations` (`id`, `band_id`, `payment_method_id`, `room_id`, `temp_reservation_date`, `temp_delayed`, `processed`, `created_at`, `updated_at`) VALUES (NULL, '$band_id', '$payment_method_id', '$room_id', '$temp_reservation_date', '0', '0', NULL, NULL);";
         $this->connection->sql($query);
@@ -100,6 +105,7 @@ class tempReservation{
         return $json;
     }
     
+    //Showcase the date the original reservation (tempRes) was created at.
     public function getCreatedAt($temp_reservation_id){
         $array = array();
         $query = "SELECT created_at FROM temporary__reservations WHERE id = '$temp_reservation_id'";
@@ -111,6 +117,7 @@ class tempReservation{
         return $json;
     }
     
+    //Cancel the temporary system reservation.
     public function cancelTempReservation($temp_reservation_id, $updated_at, $created_at){
         $query = "UPDATE `monoord`.`temporary__reservations` SET `temp_delayed` = '1', `updated_at` = $updated_at WHERE `temporary__reservations`.`id` = $temp_reservation_id AND $created_at >= NOW() - INTERVAL 1 DAY);";
         $this->connection->sql($query);
@@ -135,6 +142,7 @@ class Reservation{
             $this->query = $query;
         }
         
+    //Get all confirmed reservations that are inside the system.
     public function getReservation($band_id){
         $array = array();
         $query = "SELECT re.id, re.room_id, re.reservation_time_start, re.reservation_time_end FROM reservations AS re
@@ -173,4 +181,25 @@ class rooms {
             return $json;
         }
 }
-?>
+
+class bands {
+    
+    protected $query;
+    private $connection;
+
+	public function __construct() {
+            $this->connection = new DB_con();
+	}
+        
+        //Get all bands.
+        public function getAllBands(){
+            $array = array();
+            $query = "SELECT band_name FROM bands";
+            $result = $this->connection->sql($query);
+            while ($row = mysqli_fetch_assoc($result)) {
+                array_push($array, $row['band_name']);
+            }
+            $json = json_encode(array("server_response:"=>$array));
+            return $json;
+        }
+}
