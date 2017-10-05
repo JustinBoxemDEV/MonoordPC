@@ -17,7 +17,7 @@ class RosterController extends Controller
     {
         $currentDay = date("j F Y");
         $temporary_reservations = Temporary_Reservations::all();
-        return view('roster', compact('temporary_reservations', 'currentDay'));  
+        return view('roster', compact('temporary_reservations', 'currentDay'));
     }
 
     
