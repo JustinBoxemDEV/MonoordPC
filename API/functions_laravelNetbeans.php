@@ -192,14 +192,14 @@ class Reservation{
         }
         
     //Get all confirmed reservations that are inside the system.
-    //Status: MOET GETEST WORDEN
+    //Status: WERKT
     public function getReservation($band_id){
         $array = array();
         $query = "SELECT re.id, re.room_id, re.reservation_time_start, re.reservation_time_end FROM reservations AS re
                   RIGHT JOIN temporary__reservations AS tr ON re.temporary_reservations_id = tr.id
                   WHERE tr.band_id = $band_id AND tr.processed = 1";
         $result = $this->connection->sql($query);
-	while ($row = mysqli_fetch_assoc($result)) {
+	   while ($row = mysqli_fetch_assoc($result)) {
             array_push($array, $row);
         }
         $json = json_encode(array("server_response:" => $array));
