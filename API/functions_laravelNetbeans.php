@@ -39,6 +39,32 @@ class user {
 		$this->connection = new DB_con();
 	}
         
+
+        //Register a new user
+        //Status: INDEV
+        public function registerUser($email, $password, $firstname, $lastname, $streetname, $housenumber, $nrext, $zipcode, $city){
+            filter_var($email, FILTER_VALIDATE_EMAIL);
+            $newPass = password_hash($password, PASSWORD_DEFAULT);
+
+            $query = "INSERT INTO `monoord`.`users` (`email`, `password`, `firstname`, `lastname`, `is_admin`, `is_verified`, `is_deleted`) VALUES ('$email', '$newPass', '$firstname', '$lastname', '0', '0', '0';";
+            $this->connection->sql($query);
+
+            $query2 = "SELECT id FROM users WHERE email";
+            $query2result = $this->connection->sql($query2);
+            $row = array();
+            $userID;
+            while ($row2 = $query2result->fetch_assoc()) {
+                $userID = $row2['id'];
+            }
+
+            $query3 = "INSERT INTO `monoord`, `user_addresses` (`user_id`, `zip_code`, `street`, `housenumber`, `housenumber_extension`, `city`) VALUES ('$userID', '$zipcode', '$streetname', '$housenumber', '$nrext', '$city')";
+            $this->connection->sql($query3);
+
+            $msg = "Account met succes aangemaakt. Welkom bij MONoord!";
+            $json = json_encode(array("server_response:"=>$msg));
+            return $json;
+        }
+
         //Check the email assigned to a user.
         //Status: WERKT
         public function checkEmail($email){
@@ -145,7 +171,7 @@ class tempReservation{
     //Create a temporary reservation (needs approval by system administrator within web app).
     //Status: WERKT
     public function createTempReservation($band_id, $payment_method_id, $room_id, $temp_reservation_date){
-        $query = "INSERT INTO `monoord`.`temporary__reservations` (`id`, `band_id`, `payment_method_id`, `room_id`, `temp_reservation_date`, `temp_delayed`, `processed`, `created_at`, `updated_at`) VALUES (NULL, '$band_id', '$payment_method_id', '$room_id', '$temp_reservation_date', '0', '0', NULL, NULL);";
+        $query = "INSERT INTO `monoord`.`temporary__reservations` (`band_id`, `payment_method_id`, `room_id`, `temp_reservation_date`, `temp_delayed`, `processed`, `created_at`, `updated_at`) VALUES ('$band_id', '$payment_method_id', '$room_id', '$temp_reservation_date', '0', '0', NULL, NULL);";
         $this->connection->sql($query);
         $msg = "Gelukt";
         $json = json_encode(array("server_response:"=>$msg));
