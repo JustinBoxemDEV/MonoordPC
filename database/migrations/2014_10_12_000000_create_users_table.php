@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('firstname', 100)->nullable();
             $table->string('lastname', 100)->nullable();
+            $table->string('phone_number', 12)->nullable();
             $table->boolean('is_admin')->default(0);
             $table->boolean('is_verified')->default(0);
             $table->boolean('is_deleted')->default(0);
