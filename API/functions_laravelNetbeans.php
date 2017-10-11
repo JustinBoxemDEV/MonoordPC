@@ -45,23 +45,27 @@ class user {
         public function registerUser($email, $password, $firstname, $lastname, $streetname, $housenumber, $nrext, $zipcode, $city){
             filter_var($email, FILTER_VALIDATE_EMAIL);
             $newPass = password_hash($password, PASSWORD_DEFAULT);
-
-            $query = "INSERT INTO `monoord`.`users` (`email`, `password`, `firstname`, `lastname`, `is_admin`, `is_verified`, `is_deleted`) VALUES ('$email', '$newPass', '$firstname', '$lastname', '0', '0', '0';";
-            $this->connection->sql($query);
-
-            $query2 = "SELECT id FROM users WHERE email";
-            $query2result = $this->connection->sql($query2);
             $row = array();
-            $userID;
-            while ($row2 = $query2result->fetch_assoc()) {
-                $userID = $row2['id'];
+            $query = "INSERT INTO `users` (`email`, `password`, `firstname`, `lastname`, `is_admin`, `is_verified`, `is_deleted`) VALUES ('$email', '$newPass', '$firstname', '$lastname', '0', '0', '0')";
+            if(is_bool($this->connection->sql($query))) {
+
+                $query2 = "SELECT id FROM users WHERE email = '$email'";
+                $query2result = $this->connection->sql($query2);
+                
+                $userID = "";
+                while ($row2 = $query2result->fetch_assoc()) {
+                    $userID = $row2['id'];
+                }
+
+                $query3 = "INSERT INTO `user_addresses` (`user_id`, `zip_code`, `street`, `housenumber`, `housenumber_extension`, `city`) VALUES ('$userID', '$zipcode', '$streetname', '$housenumber', '$nrext', '$city')";
+                if($this->connection->sql($query3)) {
+                    $test = array_push($row, array("valid"=>'true'));
+                }
+                
+            } else {
+                $test = array_push($row, array("valid"=>'false'));
             }
-
-            $query3 = "INSERT INTO `monoord`, `user_addresses` (`user_id`, `zip_code`, `street`, `housenumber`, `housenumber_extension`, `city`) VALUES ('$userID', '$zipcode', '$streetname', '$housenumber', '$nrext', '$city')";
-            $this->connection->sql($query3);
-
-            $msg = "Account met succes aangemaakt. Welkom bij MONoord!";
-            $json = json_encode(array("server_response:"=>$msg));
+            $json = json_encode(array("server_response"=>$row));
             return $json;
         }
 
@@ -171,7 +175,7 @@ class tempReservation{
     //Create a temporary reservation (needs approval by system administrator within web app).
     //Status: WERKT
     public function createTempReservation($band_id, $payment_method_id, $room_id, $temp_reservation_date){
-        $query = "INSERT INTO `monoord`.`temporary__reservations` (`band_id`, `payment_method_id`, `room_id`, `temp_reservation_date`, `temp_delayed`, `processed`, `created_at`, `updated_at`) VALUES ('$band_id', '$payment_method_id', '$room_id', '$temp_reservation_date', '0', '0', NULL, NULL);";
+        $query = "INSERT INTO `temporary__reservations` (`band_id`, `payment_method_id`, `room_id`, `temp_reservation_date`, `temp_delayed`, `processed`, `created_at`, `updated_at`) VALUES ('$band_id', '$payment_method_id', '$room_id', '$temp_reservation_date', '0', '0', NULL, NULL);";
         $this->connection->sql($query);
         $msg = "Gelukt";
         $json = json_encode(array("server_response:"=>$msg));
@@ -194,7 +198,7 @@ class tempReservation{
     //Cancel the temporary system reservation.
     //Status: WERKT
     public function cancelTempReservation($temp_reservation_id, $updated_at, $created_at){
-        $query = "UPDATE `monoord`.`temporary__reservations` SET `temp_delayed` = '1', `updated_at` = $updated_at WHERE `temporary__reservations`.`id` = $temp_reservation_id AND $created_at >= NOW() - INTERVAL 1 DAY);";
+        $query = "UPDATE `temporary__reservations` SET `temp_delayed` = '1', `updated_at` = $updated_at WHERE `temporary__reservations`.`id` = $temp_reservation_id AND $created_at >= NOW() - INTERVAL 1 DAY);";
         $this->connection->sql($query);
         $msg = "Tijdelijke reservering geannuleerd";
         $json = json_encode(array("server_response:"=>$msg));
@@ -282,4 +286,28 @@ class bands {
             $json = json_encode(array("server_response:"=>$array));
             return $json;
         }
+}
+
+class paymentMethods{
+
+    protected $query;
+    private $connection;
+
+    public function __construct() {
+            $this->connection = new DB_con();
+    }
+        
+        //Get all payment methods.
+        //Status: WERKT
+        public function getAllPaymentMethods(){
+            $array = array();
+            $query = "SELECT id, payment_method_name FROM payment__methods";
+            $result = $this->connection->sql($query);
+            while ($row = mysqli_fetch_assoc($result)) {
+                array_push($array, $row['id'], $row['payment_method_name']);
+            }
+            $json = json_encode(array("server_response:"=>$array));
+            return $json;
+        }
+
 }
