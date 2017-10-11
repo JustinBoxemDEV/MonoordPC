@@ -39,14 +39,14 @@ class user {
 		$this->connection = new DB_con();
 	}
         
-
+        //Querystring = ?email=sander@gmail.com&password=password&firstname=sander&lastname=hoogdalem&phonenumber=05911322229&streetname=straatweg&housenumber=17&zipcode=7815PG&city=Groningen
         //Register a new user
-        //Status: INDEV
-        public function registerUser($email, $password, $firstname, $lastname, $streetname, $housenumber, $nrext, $zipcode, $city){
+        //Status: WERKT
+        public function registerUser($email, $password, $firstname, $lastname, $phonenumber, $streetname, $housenumber, $nrext, $zipcode, $city){
             filter_var($email, FILTER_VALIDATE_EMAIL);
             $newPass = password_hash($password, PASSWORD_DEFAULT);
             $row = array();
-            $query = "INSERT INTO `users` (`email`, `password`, `firstname`, `lastname`, `is_admin`, `is_verified`, `is_deleted`) VALUES ('$email', '$newPass', '$firstname', '$lastname', '0', '0', '0')";
+            $query = "INSERT INTO `users` (`email`, `password`, `firstname`, `lastname`, `phone_number`, `is_admin`, `is_verified`, `is_deleted`) VALUES ('$email', '$newPass', '$firstname', '$lastname', '$phonenumber', '0', '0', '0')";
             if(is_bool($this->connection->sql($query))) {
 
                 $query2 = "SELECT id FROM users WHERE email = '$email'";
@@ -57,8 +57,16 @@ class user {
                     $userID = $row2['id'];
                 }
 
-                $query3 = "INSERT INTO `user_addresses` (`user_id`, `zip_code`, `street`, `housenumber`, `housenumber_extension`, `city`) VALUES ('$userID', '$zipcode', '$streetname', '$housenumber', '$nrext', '$city')";
-                if($this->connection->sql($query3)) {
+                $query3 = "SELECT id FROM cities WHERE name = '$city'";
+                $query3result = $this->connection->sql($query3);
+                
+                $cityID = "";
+                while ($row2 = $query3result->fetch_assoc()) {
+                    $cityID = $row2['id'];
+                }
+
+                $query4 = "INSERT INTO `user_addresses` (`user_id`, `city_id`, `zip_code`, `street`, `housenumber`, `housenumber_extension`) VALUES ('$userID', '$cityID', '$zipcode', '$streetname', '$housenumber', '$nrext')";
+                if($this->connection->sql($query4)) {
                     $test = array_push($row, array("valid"=>'true'));
                 }
                 
