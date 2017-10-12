@@ -5,7 +5,7 @@ class validate {
 	protected $query;
         
         //Validate a specified user upon login into the android application.
-        //Status: WERKT
+        //Status: OPERATIONAL
 	public function vUser($par1, $par2) {
 
 		$this->query = "SELECT email,password FROM users WHERE email = '".$par1."'";
@@ -41,7 +41,7 @@ class user {
         
         //Querystring = ?email=sander@gmail.com&password=password&firstname=sander&lastname=hoogdalem&phonenumber=05911322229&streetname=straatweg&housenumber=17&zipcode=7815PG&city=Groningen
         //Register a new user
-        //Status: WERKT
+        //Status: OPERATIONAL
         public function registerUser($email, $password, $firstname, $lastname, $phonenumber, $streetname, $housenumber, $nrext, $zipcode, $city){
             filter_var($email, FILTER_VALIDATE_EMAIL);
             $newPass = password_hash($password, PASSWORD_DEFAULT);
@@ -78,7 +78,7 @@ class user {
         }
 
         //Check the email assigned to a user.
-        //Status: WERKT
+        //Status: OPERATIONAL
         public function checkEmail($email){
             $query = "SELECT email FROM users WHERE email = '$email'";
             $result = $this->connection->sql($query);
@@ -118,7 +118,7 @@ class user {
         }
         
         //Check the remember token assigned to a user.
-        //Status: WERKT
+        //Status: OPERATIONAL
         public function checkRememberToken($email, $token){
             $query = "SELECT remember_token FROM users WHERE email = '$email'";
             $result = $this->connection->sql($query);
@@ -139,7 +139,7 @@ class user {
         }
         
         //Get all information from a specified user.
-        //Status: WERKT
+        //Status: OPERATIONAL
         public function getUserData($email) {
             $array = array();
             $query = "SELECT id, email, firstname, lastname FROM users WHERE email = '$email'";
@@ -147,12 +147,12 @@ class user {
             while ($row = mysqli_fetch_assoc($result)) {
                 array_push($array, array("id"=>$row['id'], "email"=>$row['email'], "firstname"=>$row['firstname'], "lastname"=>$row['lastname']));
             }
-            $json = json_encode(array("server_response:"=>$array));
+            $json = json_encode(array("server_response"=>$array));
             return $json;
         }
         
         //Get all bands from a specified user.
-        //Status: WERKT
+        //Status: OPERATIONAL
         public function getUserBands($userID){
             $array = array();
             $query = "SELECT b.id, b.band_name FROM bands as b INNER JOIN band__user__bridges as bu ON b.id = bu.band_id INNER JOIN users as u ON u.id = bu.user_id WHERE u.id = '$userID';";
@@ -160,7 +160,7 @@ class user {
             while ($row = mysqli_fetch_assoc($result)) {
                 array_push($array, $row['band_name']);
             }
-            $json = json_encode(array("server_response:"=>$array));
+            $json = json_encode(array("server_response"=>$array));
             return $json;
         }
 }
@@ -181,17 +181,48 @@ class tempReservation{
         }
     
     //Create a temporary reservation (needs approval by system administrator within web app).
-    //Status: WERKT
+    //Status: NEEDS TESTING BY ANDROID
     public function createTempReservation($band_id, $payment_method_id, $room_id, $temp_reservation_date){
-        $query = "INSERT INTO `temporary__reservations` (`band_id`, `payment_method_id`, `room_id`, `temp_reservation_date`, `temp_delayed`, `processed`, `created_at`, `updated_at`) VALUES ('$band_id', '$payment_method_id', '$room_id', '$temp_reservation_date', '0', '0', NULL, NULL);";
-        $this->connection->sql($query);
-        $msg = "Gelukt";
-        $json = json_encode(array("server_response:"=>$msg));
-        return $json;
-    }
+            $row = array();
+            $query1 = "SELECT id FROM bands WHERE id = '$band_id'";
+            $query1result = $this->connection->sql($query1);
+                
+            $bandID = "";
+            while ($row2 = $query1result->fetch_assoc()) {
+                $bandID = $row2['id'];
+            }
+                if(is_bool($this->connection->sql($query1))) {
+
+            $query2 = "SELECT id FROM payment__methods WHERE id = '$payment_method_id'";
+            $query2result = $this->connection->sql($query2);
+                
+            $paymentMethodID = "";
+            while ($row2 = $query2result->fetch_assoc()) {
+                $paymentMethodID = $row2['id'];
+            }
+
+            $query3 = "SELECT id FROM rooms WHERE id = '$room_id'";
+            $query3result = $this->connection->sql($query3);
+                
+            $roomID = "";
+            while ($row2 = $query3result->fetch_assoc()) {
+                $roomID = $row2['id'];
+            }
+
+            $query4 = "INSERT INTO `temporary__reservations` (`band_id`, `payment_method_id`, `room_id`, `temp_reservation_date`, `temp_delayed`, `processed`, `created_at`, `updated_at`) VALUES ('$band_id', '$payment_method_id', '$room_id', '$temp_reservation_date', '0', '0', NULL, NULL);";
+            if($this->connection->sql($query4)) {
+                $test = array_push($row, array("valid"=>'true'));
+            }
+                
+            } else {
+                $test = array_push($row, array("valid"=>'false'));
+            }
+            $json = json_encode(array("server_response"=>$row));
+            return $json;
+        }
     
     //Showcase the date the original reservation (tempRes) was created at.
-    //Status: WERKT
+    //Status: OPERATIONAL
     public function getCreatedAt($temp_reservation_id){
         $array = array();
         $query = "SELECT created_at FROM temporary__reservations WHERE id = '$temp_reservation_id'";
@@ -199,17 +230,17 @@ class tempReservation{
 	while ($row = mysqli_fetch_assoc($result)) {
             array_push($array, $row['band_name']);
         }
-        $json = json_encode(array("server_response:" => $array));
+        $json = json_encode(array("server_response" => $array));
         return $json;
     }
     
     //Cancel the temporary system reservation.
-    //Status: WERKT
+    //Status: OPERATIONAL
     public function cancelTempReservation($temp_reservation_id, $updated_at, $created_at){
         $query = "UPDATE `temporary__reservations` SET `temp_delayed` = '1', `updated_at` = $updated_at WHERE `temporary__reservations`.`id` = $temp_reservation_id AND $created_at >= NOW() - INTERVAL 1 DAY);";
         $this->connection->sql($query);
         $msg = "Tijdelijke reservering geannuleerd";
-        $json = json_encode(array("server_response:"=>$msg));
+        $json = json_encode(array("server_response"=>$msg));
         return $json;
     }
 }
@@ -230,7 +261,7 @@ class Reservation{
         }
         
     //Get all confirmed reservations that are inside the system.
-    //Status: WERKT
+    //Status: OPERATIONAL
     public function getReservation($band_id){
         $array = array();
         $query = "SELECT re.id, re.room_id, re.reservation_time_start, re.reservation_time_end FROM reservations AS re
@@ -240,7 +271,7 @@ class Reservation{
 	   while ($row = mysqli_fetch_assoc($result)) {
             array_push($array, $row);
         }
-        $json = json_encode(array("server_response:" => $array));
+        $json = json_encode(array("server_response" => $array));
         return $json;
     }
 }
@@ -255,7 +286,7 @@ class rooms {
 	}
         
         //Get all rooms based on params of datetime and display if not within range of an existing start and end date.
-        //Status: WERKT
+        //Status: OPERATIONAL
         public function getAvailableRooms(){
             $array = array();
             $query = "SELECT room_name FROM rooms WHERE id NOT IN (SELECT room_id FROM temporary__reservations "
@@ -268,7 +299,7 @@ class rooms {
             while ($row = mysqli_fetch_assoc($result)) {
                 array_push($array, $row['room_name']);
             }
-            $json = json_encode(array("server_response:"=>$array));
+            $json = json_encode(array("server_response"=>$array));
             return $json;
         }
 }
@@ -283,7 +314,7 @@ class bands {
 	}
         
         //Get all bands.
-        //Status: WERKT
+        //Status: OPERATIONAL
         public function getAllBands(){
             $array = array();
             $query = "SELECT band_name FROM bands";
@@ -291,7 +322,7 @@ class bands {
             while ($row = mysqli_fetch_assoc($result)) {
                 array_push($array, $row['band_name']);
             }
-            $json = json_encode(array("server_response:"=>$array));
+            $json = json_encode(array("server_response"=>$array));
             return $json;
         }
 }
@@ -306,7 +337,7 @@ class paymentMethods{
     }
         
         //Get all payment methods.
-        //Status: WERKT
+        //Status: OPERATIONAL
         public function getAllPaymentMethods(){
             $array = array();
             $query = "SELECT id, payment_method_name FROM payment__methods";
@@ -314,7 +345,7 @@ class paymentMethods{
             while ($row = mysqli_fetch_assoc($result)) {
                 array_push($array, $row['id'], $row['payment_method_name']);
             }
-            $json = json_encode(array("server_response:"=>$array));
+            $json = json_encode(array("server_response"=>$array));
             return $json;
         }
 
