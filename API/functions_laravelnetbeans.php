@@ -9,15 +9,8 @@ include 'database.php';
 
 // TODO PC:
 
-// - createTempReservation (Aanmaken van een tijdelijke reservering)
-// - resetPassword () function to handle new password and update password from old to new
-// - make addband.php file for createNewBand function
-
-// - get all rooms function at rooms
 // - pass selected room within getAvailableRooms
 // - make .php file named "checkroomavailability.php"
-// - fix file named "getuserdata.php"
-
 
 // WERKEND:
 // - vUser (valideert login)
@@ -27,6 +20,11 @@ include 'database.php';
 // - checkRememberToken (Checkt remember token)
 // - getUserData (Haalt alle data van een gebruiker op)
 // - getUserBands (Haalt alle bands op die bij een gebruiker horen)
+// - createTempReservation (Aanmaken van een tijdelijke reservering)
+// - fix file named "getuserdata.php"
+// - make createnewband.php file for createNewBand function
+// - resetPassword () function to handle new password and update password from old to new
+// - get all rooms function at rooms
 
 class validate {
     protected $query;
@@ -178,6 +176,13 @@ class user {
         $json = json_encode(array("server_response"=>$row));
         return $json;
         }
+
+        public function resetPassword($email, $newPass){
+            filter_var($email, FILTER_VALIDATE_EMAIL);
+            $newPassHashed = password_hash($newPass, PASSWORD_DEFAULT);
+            $query = "UPDATE users SET password ='$newPassHashed' WHERE email = '$email'";
+            $this->connection->sql($query);
+        }
         
         //Get all information from a specified user.
         //Status: OPERATIONAL
@@ -325,8 +330,18 @@ class rooms {
     public function __construct() {
         $this->connection = new DB_con();
     }
-        //Get all rooms
-
+        //Get all rooms.
+        //Status: OPERATIONAL
+        public function getAllRooms(){
+            $array = array();
+            $query = "SELECT room_name FROM rooms";
+            $result = $this->connection->sql($query);
+            while ($row = mysqli_fetch_assoc($result)) {
+                array_push($array, $row['room_name']);
+            }
+            $json = json_encode(array("server_response"=>$array));
+            return $json;
+        }
 
         //Get all rooms based on params of datetime and display if not within range of an existing start and end date.
         //Status: OPERATIONAL
@@ -345,6 +360,7 @@ class rooms {
             $json = json_encode(array("server_response"=>$array));
             return $json;
         }
+
 }
 
 class bands {
