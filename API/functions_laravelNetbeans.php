@@ -2,42 +2,42 @@
 include 'database.php';
 
 class validate {
-	protected $query;
+    protected $query;
         
         //Validate a specified user upon login into the android application.
         //Status: OPERATIONAL
-	public function vUser($par1, $par2) {
+    public function vUser($par1, $par2) {
 
-		$this->query = "SELECT email,password FROM users WHERE email = '".$par1."'";
-		$db = new DB_con();
-		$result = $db->sql($this->query);
-		$row = array();
-		while ($row2 = $result->fetch_assoc()) {
-			$password = $row2['password'];
-		}
-		if (password_verify($par2, $password)) {
-			$test = array_push($row, array("valid"=>'true'));
-		}
-		else {
-			$test = array_push($row, array("valid"=>'false'));
-		}
+        $this->query = "SELECT email,password FROM users WHERE email = '".$par1."'";
+        $db = new DB_con();
+        $result = $db->sql($this->query);
+        $row = array();
+        while ($row2 = $result->fetch_assoc()) {
+            $password = $row2['password'];
+        }
+        if (password_verify($par2, $password)) {
+            $test = array_push($row, array("valid"=>'true'));
+        }
+        else {
+            $test = array_push($row, array("valid"=>'false'));
+        }
 
-		$json = json_encode(array("server_response"=>$row));
-		return $json;
+        $json = json_encode(array("server_response"=>$row));
+        return $json;
 
-	}
+    }
 
 
 }
 
 class user {
         
-	protected $query;
-	private $connection;
+    protected $query;
+    private $connection;
 
-	public function __construct() {
-		$this->connection = new DB_con();
-	}
+    public function __construct() {
+        $this->connection = new DB_con();
+    }
         
         //Querystring = ?email=sander@gmail.com&password=password&firstname=sander&lastname=hoogdalem&phonenumber=05911322229&streetname=straatweg&housenumber=17&zipcode=7815PG&city=Groningen
         //Register a new user
@@ -59,10 +59,24 @@ class user {
 
                 $query3 = "SELECT id FROM cities WHERE name = '$city'";
                 $query3result = $this->connection->sql($query3);
-                
-                $cityID = "";
-                while ($row2 = $query3result->fetch_assoc()) {
-                    $cityID = $row2['id'];
+                $cityRowCount = mysqli_num_rows($query3result);
+
+                if($cityRowCount == 0){
+                    $queryCityCreate = "INSERT INTO `cities` (`name`) VALUES ('$city')";
+                    $this->connection->sql($queryCityCreate);
+                    $queryNewCitySelect = "SELECT id FROM cities WHERE name = '$city'";
+                    $queryNewCityresult = $this->connection->sql($queryNewCitySelect);
+                    $cityID = "";
+                    while ($row2 = $queryNewCityresult->fetch_assoc()) {
+                        $cityID = $row2['id'];
+                    }
+                }
+
+                else{
+                    $cityID = "";
+                    while ($row2 = $query3result->fetch_assoc()) {
+                        $cityID = $row2['id'];
+                    }
                 }
 
                 $query4 = "INSERT INTO `user_addresses` (`user_id`, `city_id`, `zip_code`, `street`, `housenumber`, `housenumber_extension`) VALUES ('$userID', '$cityID', '$zipcode', '$streetname', '$housenumber', '$nrext')";
@@ -83,19 +97,19 @@ class user {
             $query = "SELECT email FROM users WHERE email = '$email'";
             $result = $this->connection->sql($query);
             $row = array();
-			while ($row2 = $result->fetch_assoc()) {
-				$retrievedEmail = $row2['email'];
-			}
-			
-			if ($retrievedEmail == $email) {
-				$test = array_push($row, array("valid"=>'true'));
-			}
-			else {
-				$test = array_push($row, array("valid"=>'false'));
-			}
+            while ($row2 = $result->fetch_assoc()) {
+                $retrievedEmail = $row2['email'];
+            }
+            
+            if ($retrievedEmail == $email) {
+                $test = array_push($row, array("valid"=>'true'));
+            }
+            else {
+                $test = array_push($row, array("valid"=>'false'));
+            }
 
-		$json = json_encode(array("server_response"=>$row));
-		return $json;
+        $json = json_encode(array("server_response"=>$row));
+        return $json;
         }
         
         //Send a recovery mail to a specified user.
@@ -123,19 +137,19 @@ class user {
             $query = "SELECT remember_token FROM users WHERE email = '$email'";
             $result = $this->connection->sql($query);
             $row = array();
-			while ($row2 = $result->fetch_assoc()) {
-				$retrievedToken = $row2['remember_token'];
-			}
-			
-			if ($retrievedToken == $token) {
-				$test = array_push($row, array("valid"=>'true'));
-			}
-			else {
-				$test = array_push($row, array("valid"=>'false'));
-			}
+            while ($row2 = $result->fetch_assoc()) {
+                $retrievedToken = $row2['remember_token'];
+            }
+            
+            if ($retrievedToken == $token) {
+                $test = array_push($row, array("valid"=>'true'));
+            }
+            else {
+                $test = array_push($row, array("valid"=>'false'));
+            }
 
-		$json = json_encode(array("server_response"=>$row));
-		return $json;
+        $json = json_encode(array("server_response"=>$row));
+        return $json;
         }
         
         //Get all information from a specified user.
@@ -227,7 +241,7 @@ class tempReservation{
         $array = array();
         $query = "SELECT created_at FROM temporary__reservations WHERE id = '$temp_reservation_id'";
         $result = $this->connection->sql($query)->fetch_assoc();
-	while ($row = mysqli_fetch_assoc($result)) {
+    while ($row = mysqli_fetch_assoc($result)) {
             array_push($array, $row['band_name']);
         }
         $json = json_encode(array("server_response" => $array));
@@ -245,7 +259,7 @@ class tempReservation{
     }
 }
 
-class Reservation{
+class reservation{
     
     protected $query;
     private $connection;
@@ -268,7 +282,7 @@ class Reservation{
                   RIGHT JOIN temporary__reservations AS tr ON re.temporary_reservations_id = tr.id
                   WHERE tr.band_id = $band_id AND tr.processed = 1";
         $result = $this->connection->sql($query);
-	   while ($row = mysqli_fetch_assoc($result)) {
+       while ($row = mysqli_fetch_assoc($result)) {
             array_push($array, $row);
         }
         $json = json_encode(array("server_response" => $array));
@@ -278,12 +292,12 @@ class Reservation{
 
 class rooms {
         
-	protected $query;
-	private $connection;
+    protected $query;
+    private $connection;
 
-	public function __construct() {
-		$this->connection = new DB_con();
-	}
+    public function __construct() {
+        $this->connection = new DB_con();
+    }
         
         //Get all rooms based on params of datetime and display if not within range of an existing start and end date.
         //Status: OPERATIONAL
@@ -309,9 +323,9 @@ class bands {
     protected $query;
     private $connection;
 
-	public function __construct() {
+    public function __construct() {
             $this->connection = new DB_con();
-	}
+    }
         
         //Get all bands.
         //Status: OPERATIONAL
@@ -323,6 +337,22 @@ class bands {
                 array_push($array, $row['band_name']);
             }
             $json = json_encode(array("server_response"=>$array));
+            return $json;
+        }
+
+        //Create a new band.
+        //Status: IN DEVELOPMENT
+        public function createNewBand($band_name, $notes){
+            $array = array();
+            $query = "INSERT INTO `bands` (`band_name`, `notes`) VALUES ('$band_name', '$notes')";
+            $result = $this->connection->sql($query);
+            if($this->connection->sql($query)) {
+                $test = array_push($row, array("valid"=>'true'));
+            }
+            else {
+                $test = array_push($row, array("valid"=>'false'));
+            }
+            $json = json_encode(array("server_response"=>$row));
             return $json;
         }
 }
