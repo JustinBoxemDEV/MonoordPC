@@ -1,6 +1,33 @@
 <?php
 include 'database.php';
 
+// API STATUS
+
+// TODO ANDROID:
+
+// - getUserData (Haalt gebruikersgegevens op)
+
+// TODO PC:
+
+// - createTempReservation (Aanmaken van een tijdelijke reservering)
+// - resetPassword () function to handle new password and update password from old to new
+// - make addband.php file for createNewBand function
+
+// - get all rooms function at rooms
+// - pass selected room within getAvailableRooms
+// - make .php file named "checkroomavailability.php"
+// - fix file named "getuserdata.php"
+
+
+// WERKEND:
+// - vUser (valideert login)
+// - registerUser (registreert gebruiker)
+// - checkEmail (checkt of een email al bestaat)
+// - sendRecoveryMail (Werkt op aanroep)
+// - checkRememberToken (Checkt remember token)
+// - getUserData (Haalt alle data van een gebruiker op)
+// - getUserBands (Haalt alle bands op die bij een gebruiker horen)
+
 class validate {
     protected $query;
         
@@ -196,7 +223,7 @@ class tempReservation{
     
     //Create a temporary reservation (needs approval by system administrator within web app).
     //Status: NEEDS TESTING BY ANDROID
-    public function createTempReservation($band_id, $payment_method_id, $room_id, $temp_reservation_date){
+    public function createTempReservation($band_id, $payment_method_id, $room_id, $temp_reservation_time_start, $temp_reservation_time_end){
             $row = array();
             $query1 = "SELECT id FROM bands WHERE id = '$band_id'";
             $query1result = $this->connection->sql($query1);
@@ -223,7 +250,7 @@ class tempReservation{
                 $roomID = $row2['id'];
             }
 
-            $query4 = "INSERT INTO `temporary__reservations` (`band_id`, `payment_method_id`, `room_id`, `temp_reservation_date`, `temp_delayed`, `processed`, `created_at`, `updated_at`) VALUES ('$band_id', '$payment_method_id', '$room_id', '$temp_reservation_date', '0', '0', NULL, NULL);";
+            $query4 = "INSERT INTO `temporary__reservations` (`band_id`, `payment_method_id`, `room_id`, `temp_reservation_time_start`, `temp_reservation_time_end`, `temp_delayed`, `processed`, `created_at`, `updated_at`) VALUES ('$band_id', '$payment_method_id', '$room_id', '$temp_reservation_time_start', '$temp_reservation_time_end','0', '0', NULL, NULL);";
             if($this->connection->sql($query4)) {
                 $test = array_push($row, array("valid"=>'true'));
             }
@@ -298,7 +325,9 @@ class rooms {
     public function __construct() {
         $this->connection = new DB_con();
     }
-        
+        //Get all rooms
+
+
         //Get all rooms based on params of datetime and display if not within range of an existing start and end date.
         //Status: OPERATIONAL
         public function getAvailableRooms(){
