@@ -141,6 +141,7 @@ class user {
         //Status: STAAT OP SERVER (ANDROID MOET DIT AFWERKEN)
         public function sendRecoveryMail($email) {
             $token = "";
+            $row = array();
             $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             $codeAlphabet.= "0123456789";
             $max = strlen($codeAlphabet); // edited
@@ -154,6 +155,15 @@ class user {
             $topic = "Wachtwoord reset | Muziek Organizatie Noord";
             $message = "Geachte persoon, u heeft een mail ontvangen betreffende het resetten van uw wachtwoord. Wachtwoord reset code: $token";
             mail($email,$topic,$message,$from);
+                        if($this->connection->sql($query)) {
+                $test = array_push($row, array("valid"=>'true'));
+            }
+                
+            else {
+                $test = array_push($row, array("valid"=>'false'));
+            }
+            $json = json_encode(array("server_response"=>$row));
+            return $json;
         }
         
         //Check the remember token assigned to a user.
