@@ -20,6 +20,7 @@ class CreateTemporaryReservationsTable extends Migration
             $table->integer('room_id')->unsigned();
             $table->datetime('temp_reservation_time_start');
             $table->datetime('temp_reservation_time_end');
+            $table->string('notes')->nullable();
             $table->boolean('temp_delayed');
             $table->boolean('processed');
             $table->timestamps();
