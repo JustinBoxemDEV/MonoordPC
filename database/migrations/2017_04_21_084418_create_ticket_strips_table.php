@@ -15,11 +15,16 @@ class CreateTicketStripsTable extends Migration
     {
         Schema::create('ticket_strips', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('surface_area');            
+            $table->integer('room_type_id')->unsigned();            
             $table->boolean('three_hour');
             $table->boolean('filled');
             $table->boolean('daytime')->default(0);
             $table->timestamps();
+        });
+        
+        Schema::table('ticket_strips', function (Blueprint $table)
+        {
+            $table->foreign('room_type_id')->references('id')->on('room_types');   
         });
     }
 
