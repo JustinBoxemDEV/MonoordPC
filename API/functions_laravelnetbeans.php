@@ -141,6 +141,7 @@ class user {
         //Status: STAAT OP SERVER (ANDROID MOET DIT AFWERKEN)
         public function sendRecoveryMail($email) {
             $token = "";
+            $row = array();
             $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             $codeAlphabet.= "0123456789";
             $max = strlen($codeAlphabet); // edited
@@ -154,6 +155,15 @@ class user {
             $topic = "Wachtwoord reset | Muziek Organizatie Noord";
             $message = "Geachte persoon, u heeft een mail ontvangen betreffende het resetten van uw wachtwoord. Wachtwoord reset code: $token";
             mail($email,$topic,$message,$from);
+                        if($this->connection->sql($query)) {
+                $test = array_push($row, array("valid"=>'true'));
+            }
+                
+            else {
+                $test = array_push($row, array("valid"=>'false'));
+            }
+            $json = json_encode(array("server_response"=>$row));
+            return $json;
         }
         
         //Check the remember token assigned to a user.
@@ -334,7 +344,7 @@ class rooms {
         //Status: OPERATIONAL
         public function getAllRooms(){
             $array = array();
-            $query = "SELECT room_name FROM rooms";
+            $query = "SELECT * FROM rooms";
             $result = $this->connection->sql($query);
             while ($row = mysqli_fetch_assoc($result)) {
                 array_push($array, $row['room_name']);
@@ -345,12 +355,12 @@ class rooms {
 
         //Get all rooms based on params of datetime and display if not within range of an existing start and end date.
         //Status: OPERATIONAL
-        public function getAvailableRooms(){
+        public function getAvailableRooms($room_id){
             $array = array();
-            $query = "SELECT room_name FROM rooms WHERE id NOT IN (SELECT room_id FROM temporary__reservations "
+            $query = "SELECT room_name FROM rooms WHERE $room_id NOT IN (SELECT room_id FROM temporary__reservations "
                     . "WHERE processed != 1 AND '2017-07-07 11:30:00' <= temp_reservation_time_end "
                     . "AND '2017-07-07 11:00:00' >= temp_reservation_time_start) "
-                    . "AND id NOT IN (SELECT room_id FROM reservations "
+                    . "AND $room_id NOT IN (SELECT room_id FROM reservations "
                     . "WHERE '2017-07-07 11:30:00' <= reservation_time_end "
                     . "AND '2017-07-07 11:00:00' >= reservation_time_start)";
             $result = $this->connection->sql($query);
