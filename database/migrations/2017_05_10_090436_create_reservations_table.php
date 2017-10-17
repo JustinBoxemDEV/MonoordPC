@@ -21,6 +21,7 @@ class CreateReservationsTable extends Migration
             $table->integer('reservation_status_id')->unsigned();
             $table->datetime('reservation_time_start');
             $table->datetime('reservation_time_end');
+            $table->string('notes')->nullable();
             $table->boolean('delayed');
             $table->timestamps();
         });
