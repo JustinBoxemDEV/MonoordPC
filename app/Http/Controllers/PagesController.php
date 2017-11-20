@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Band;
 use App\Reservation;
+use App\Timeblock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,7 +31,8 @@ class PagesController extends Controller {
                 $totalReservations = "Er zijn momenteel geen reserveringen";
             }
             $reservations = Reservation::all();
-            return view('dashboard', compact('totalBands', 'totalUsers', 'totalReservations', 'currentDay', 'reservations'));
+            $timeblocks = Timeblock::all();
+            return view('dashboard', compact('totalBands', 'totalUsers', 'totalReservations', 'currentDay', 'reservations', 'timeblocks'));
         }
     }
 }

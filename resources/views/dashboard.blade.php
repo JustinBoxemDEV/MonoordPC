@@ -39,10 +39,16 @@
 
                     <tbody>
                     <br>
+                    
+                    
+                 
+                    
+            
                     @foreach($reservations as $reservation)
+                    
                     <tr class="clickable-row" data-url="/reservation/{{ $reservation->id }}">
                         <td>
-                            <h1>XX:XX</h1>
+                            <h1>dd($timeblocks);</h1>
                         </td>
                         <td>
                             <b>Band: </b>{{ $reservation->id}} <br>
@@ -52,6 +58,7 @@
                             <b>Reservation Status: </b> {{ $reservation->Reservation_Status->reservation_status_name }}</td>            
                        <td><a href="{{ url('/reservation/' . $reservation->id . '/edit') }}"><button class="btn btn-warning"><span class="glyphicon glyphicon-pencil"> Bijwerken</span></button></a></td>
                     </tr>
+                    
                     @endforeach
                     </tbody>
 

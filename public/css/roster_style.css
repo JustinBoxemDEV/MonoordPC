@@ -1,0 +1,74 @@
+.container{
+    text-align: center;
+}
+
+.page-header{
+    
+   margin-top: 0%;
+    
+}
+
+.navbar-fixed-bottom{
+    text-align: center;
+    background-color:#47534e;
+    color:#ef090c;
+}
+
+.dashboard-links > a {
+    padding: 0 50px;
+    letter-spacing: .1rem;
+    text-decoration: none;
+}
+
+.dashboard-overview {
+    text-align: center;
+}
+
+.bannerlogo {
+    position:   absolute;
+    max-height: 100%;
+    max-width:  100%;
+    
+}
+.archive-search {
+    
+margin-top:    5px;
+
+
+}
+
+
+.reservation {
+	border: 1px solid black;
+	min-height: 30px;
+	width:70%;
+	margin-left: 15%;
+	margin-right: 15%;
+}
+.active{
+	background-color: green;
+	color:white;
+}
+.pending {
+	background-color: orange;
+	color: white;
+}
+.canceled {
+	background-color: red;
+	color:white;
+}
+body {
+	margin:0;
+	padding: 0;
+}
+.container {
+	width:100%;
+}
+.title{
+	margin-left:5px;
+}
+.info {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
